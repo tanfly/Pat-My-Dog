@@ -1,0 +1,17 @@
+<%= form_for user do |f| %>
+    <%= f.label "Name:" %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label "Username:" %><br>
+    <%= f.text_field :username %><br>
+    <%= f.label "Email:" %><br>
+    <%= f.text_field :email %><br>
+    <%= f.label "Password:" %><br>
+    <%= f.password_field :password_digest %><br>
+    <%= f.label "Age: *optional" %><br>
+    <%= f.text_field :age %><br>
+    <%= f.label "Location: *optional" %><br>
+    <%= f.text_field :location %><br><br>
+    <%= f.label "Profile Pic:" %>  <%= f.file_field :avatar %><br>
+    <br>
+    <%= f.submit "Submit" %>
+<% end %>

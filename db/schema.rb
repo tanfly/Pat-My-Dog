@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_02_231236) do
+ActiveRecord::Schema.define(version: 2019_08_03_210507) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_08_02_231236) do
     t.integer "age"
     t.string "location"
     t.string "email"
+    t.string "avatar"
   end
 
 end

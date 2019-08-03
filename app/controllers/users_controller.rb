@@ -5,6 +5,7 @@ class UsersController < ApplicationController
             render :show
         else
             redirect_to root_path
+        end
     end
 
     def new
@@ -31,6 +32,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name, :username, :password, :email, :last_login, :member_since, :age, :location)
+        params.require(:user).permit(:name, :username, :password_digest, :email, :last_login, :member_since, :age, :location, :avatar)
     end
 end
