@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
     def show
         if current_user
+            @user = current_user
             render :show
         else
             redirect_to root_path
@@ -24,9 +25,11 @@ class UsersController < ApplicationController
     end
 
     def edit
+        @user = current_user
     end
 
     def update
+        
     end
 
     private

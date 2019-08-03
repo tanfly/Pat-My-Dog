@@ -1,2 +1,7 @@
 <h1> Edit Your Info: </h1>
 <%= render partial: 'user', locals: {user: @user} %>
+
+<br>
+<br>
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', user_path(@user) %>

@@ -1,3 +1,9 @@
-<%= image_tag(avatar.image_url, :alt => avatar.short_name) %>
+<% unless @user.avatar_url.nil? %><%= image_tag @user.avatar_url %><br /><% end %>
 
-<%= image_tag(avatar.image_url(:thumbnail), :width => 50, :height => 50) %>
+
+<p>
+  <strong>Avatar:</strong>
+  <%= cl_image_tag @user.avatar %>
+</p>
+
+<%= link_to 'Edit Your Info', edit_user_path(@user) %> |
