@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :photos
   resources :albums
+  get '/signin' => 'sessions#new'
+  post '/signin' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 end
