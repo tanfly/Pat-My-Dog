@@ -18,8 +18,8 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'pry'
 gem 'bcrypt'
-gem 'cloudinary'
 gem 'carrierwave'
+gem 'cloudinary'
 gem 'figaro'
 
 # Use CoffeeScript for .coffee assets and views

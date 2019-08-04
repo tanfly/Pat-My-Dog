@@ -1,65 +1,45 @@
-<%= form_for user do |f| %>
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(user.errors.count, "error") %> prohibited this post from being saved:</h2>
-  
-        <ul>
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-  
-    <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= f.label :username %><br>
-      <%= f.text_field :username %>
-    </div>
-    <div class="field">
-      <%= f.label :email %><br>
-      <%= f.text_field :email %>
-    </div>
-    <div class="field">
-      <%= f.label :password %><br>
-      <%= f.password_field :password_digest %>
-    </div>
-    <div class="field">
-      <%= f.label :age %><br>
-      <%= f.text_field :age %>
-    </div>
-    <div class="field">
-      <%= f.label :location %><br>
-      <%= f.text_field :location %>
-    </div>
-    <div class="field">
-      <%= f.label :avatar %><br>
-      <p id="upload_widget_opener"></p>
-      <button type="button" id="upload_widget" class="cloudinary-button">Upload file</button><br><br>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
+<%= form_for(user) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+  <%= f.label :email %><br>
+  <%= f.text_field :email %>
+</div>
+<div class="field">
+<%= f.label :password %><br>
+<%= f.password_field :password_digest %>
+</div>
+  <div class="field">
+    <%= f.label :avatar %><br>
+    <p id="upload_widget_opener">Upload multiple images</p>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
-
-<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script><br> 
-
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+          
 <script type="text/javascript">  
-var myWidget = cloudinary.createUploadWidget({
-  cloudName: 'ras060103', 
-  uploadPreset: 'uro4gldd'}, (error, result) => { 
-    if (!error && result && result.event === "success") { 
-      console.log('Done! Here is the image info: ', result.info); 
-    }
-  }
-)
-
-document.getElementById("upload_widget").addEventListener("click", function(){
-    myWidget.open();
-  }, false);
-</script><br>
+  cloudinary.applyUploadWidget(document.getElementById('upload_widget_opener'), 
+    { cloud_name: 'ras060103', upload_preset: 'uro4gldd', field_name: 'user[avatar]', multiple: false }, 
+      function(error, result) {console.log(error, result)});
+</script>

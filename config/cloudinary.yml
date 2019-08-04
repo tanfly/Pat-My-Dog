@@ -1,0 +1,18 @@
+development:
+  cloud_name: ras060103
+  api_key: '531275599256518'
+  api_secret: pE_Qv_EwaI3XIc4vhNGuUkkpPjQ
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: ras060103
+  api_key: '531275599256518'
+  api_secret: pE_Qv_EwaI3XIc4vhNGuUkkpPjQ
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: ras060103
+  api_key: '531275599256518'
+  api_secret: pE_Qv_EwaI3XIc4vhNGuUkkpPjQ
+  enhance_image_tag: true
+  static_file_support: false
