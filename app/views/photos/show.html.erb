@@ -2,6 +2,11 @@
 
 <%= image_tag(photo.image_url(:thumbnail), :width => 50, :height => 50) %>
 
+<img class="img-responsive" src="<%= image_tag(photo.image_url, :alt => photo.short_name) %>" alt="Chania">
+
+<h6> Categories: </h6>
+<% @photo.categories.each do |category| %>
+    
 
 <h1> Comments: </h1>
 <% @photo.comments.each do |comment| %>

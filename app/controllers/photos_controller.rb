@@ -1,5 +1,4 @@
 class PhotosController < ApplicationController
-    mount_uploader :image, ImageUploader
     before_action :set_photo, only: [:show, :edit, :update, :destroy]
     
     
