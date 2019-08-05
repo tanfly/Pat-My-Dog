@@ -3,24 +3,37 @@ class CategoriesController < ApplicationController
     before_action :set_category, only: [:show, :edit, :update, :destroy]
 
     def index
+        @categories = Category.all
     end
 
     def show
     end
 
     def new
+        @category = Category.new
     end
 
     def create
+        category = Category.new(category_params)
+        if category.save
+            redirect_to category_path(category)
+        else
+            flash[:alert] = "Please make sure all form areas are filled out."
+            redirect_to new_category_path
+        end
     end
 
     def edit
     end
 
     def update
+        @category.update(category_params)
+        redirect_to category_path(@category)
     end
 
     def destroy
+        @category.destroy
+        redirect_to category_path
     end
 
     private
