@@ -1,3 +1,9 @@
 <%= image_tag(photo.image_url, :alt => photo.short_name) %>
 
 <%= image_tag(photo.image_url(:thumbnail), :width => 50, :height => 50) %>
+
+
+<h1> Comments: </h1>
+<% @photo.comments.each do |comment| %>
+    <p> <%=comment.user%> says: <%= comment.content %> </p>
+    <%end%>
