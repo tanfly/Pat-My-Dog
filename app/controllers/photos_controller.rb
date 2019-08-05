@@ -17,6 +17,7 @@ class PhotosController < ApplicationController
         else
             flash[:alert] = "Please make sure all form areas are filled out."
             redirect_to new_photo_path
+        end
     end
     
     def edit

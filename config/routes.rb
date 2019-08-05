@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :photos
   resources :albums
+  resources :categories
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
