@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-
+    before_action :require_login, only: [:show, :index, :new, :create, :edit, :destroy]
     before_action :set_album, only: [:show, :edit, :update, :destroy]
     
     def index
@@ -38,6 +38,10 @@ class AlbumsController < ApplicationController
     end
     
     private
+
+    def require_login
+        authorized?
+    end
     
     def set_album
         @album = Album.find(params[:id])

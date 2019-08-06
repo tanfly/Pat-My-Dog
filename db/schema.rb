@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_210507) do
+ActiveRecord::Schema.define(version: 2019_08_05_204837) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_08_03_210507) do
     t.integer "pat_count"
     t.integer "user_id"
     t.integer "album_id"
+    t.string "image"
   end
 
   create_table "users", force: :cascade do |t|

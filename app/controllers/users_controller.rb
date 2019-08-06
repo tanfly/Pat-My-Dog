@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :require_login, only: [:show, :index, :edit, :destroy]
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     def show
@@ -14,8 +15,6 @@ class UsersController < ApplicationController
     end
 
     def create
-        binding.pry
-
         user = User.new(user_params)
         if user.save
             session[:user_id] = user.id 
@@ -37,9 +36,13 @@ class UsersController < ApplicationController
 
     private
 
+    def require_login
+        authorized?
+    end
+
     def set_user
         @user = User.find(params[:id])
-      end
+    end
 
     def user_params
         params.require(:user).permit(:name, :username, :password_digest, :email, :last_login, :member_since, :age, :location, :file)

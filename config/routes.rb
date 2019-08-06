@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
+
   root 'pages#home'
-  resources :users
+
+  resources :users do
+    resources :photos 
+  end
+
   resources :photos
   resources :albums
   resources :categories
-  get '/signin' => 'sessions#new'
-  post '/signin' => 'sessions#create'
+
+  get '/signup' => 'users#new'
+  post '/signup' => 'users#create'
+
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+  
 end

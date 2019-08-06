@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+    before_action :require_login, only: [:show, :index, :new, :create, :edit, :destroy]
     before_action :set_category, only: [:edit, :update, :destroy]
 
     def new
@@ -29,6 +30,10 @@ class CommentsController < ApplicationController
     end
 
     private
+
+    def require_login
+        authorized?
+    end
 
     def set_category
         @comment = Comment.find(params[:id])

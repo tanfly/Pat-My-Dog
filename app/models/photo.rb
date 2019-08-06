@@ -5,4 +5,5 @@ class Photo < ApplicationRecord
     belongs_to :album, optional: true
     accepts_nested_attributes_for :categories
     validates_presence_of :image, :category_id
+    mount_uploader :image, PhotoUploader
 end

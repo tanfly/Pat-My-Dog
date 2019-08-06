@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+    before_action :require_login, only: [:new, :create, :edit, :destroy]
 
     before_action :set_category, only: [:show, :edit, :update, :destroy]
 
@@ -37,6 +38,10 @@ class CategoriesController < ApplicationController
     end
 
     private
+
+    def require_login
+        authorized?
+    end
 
     def set_category
         @category = Category.find(params[:id])
