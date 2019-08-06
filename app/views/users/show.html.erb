@@ -2,7 +2,11 @@
 
 <p>
   <strong>Avatar:</strong>
-  <%= cl_image_tag @user.avatar %>
+  <% if @user.avatar.blank? %>
+  <%= link_to "Add Avatar", edit_user_path(@user) %>
+  <%else%>
+  <%= image_tag "#{@user.avatar}", size: "500" %> </p>
+  <%end%>
 </p>
 
-<%= link_to 'Edit Your Info', edit_user_path(@user) %> |
+<%= link_to 'Edit Your Info', edit_user_path(@user) %> | <%= link_to "Pat Some Dogs!", photo_path %>

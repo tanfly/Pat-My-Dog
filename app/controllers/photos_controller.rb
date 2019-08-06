@@ -2,6 +2,10 @@ class PhotosController < ApplicationController
     before_action :require_login, only: [:show, :index, :new, :create, :edit, :destroy]
     before_action :set_photo, only: [:show, :edit, :update, :destroy]
     
+    def index
+        @user = User.find_by(id: params[:user_id])
+        @photos = @user.photos
+    end
     
     def show
     end
@@ -13,12 +17,12 @@ class PhotosController < ApplicationController
     
     def create
         @photo = Photo.new(photo_params)
-        @photo.user_id = current_user.id
+        @photo.user_id = params[:user_id]
             if @photo.save
                 redirect_to user_photo_path(@photo.user, @photo)
             else
                 flash[:error] = "Please ensure all areas are filled out correctly."
-                redirect_to new_user_photo_path
+                redirect_to new_user_photo_path(@photo.user)
             end
     end
     
