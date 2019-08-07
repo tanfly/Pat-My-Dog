@@ -1,6 +1,6 @@
 <h1> <%= link_to @photo.user.name, user_path(@photo.user) %>'s Photo of </h1>
-<h3>Pats: <p><%= @photo.pats.count %> <%= (@photo.pats.count) == 1 ? 'Pat' : 'Pats'%></p>
-
+<h3><strong>Pats: <p><%= @photo.pats.count %> <%= (@photo.pats.count) == 1 ? 'Pat' : 'Pats'%></p></strong></h3>
+<h2> Click me to give me a pat! </h2>
 <%= link_to (cl_image_tag "#{@photo.image}", size: "400"), photo_pats_path(@photo), :method => :post %>
 
 

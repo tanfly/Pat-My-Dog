@@ -5,6 +5,7 @@
         {:angle=>90}
         ] %>
         <br><br><br>
+    <%= hidden_field_tag "photo[user_id]", @photo.user_id, value: current_user.id %><br>
     <%= f.label :description %><br>
     <%= f.text_area :description %><br>
     <%= f.label :categories %><br>
@@ -13,7 +14,10 @@
         <%= b.check_box %>
         <%= b.label %>
         </p>
-        <%end%><br>
-        <%= hidden_field_tag "photo[user_id]", @photo.user_id %>
+        <%end%>
+    <%= f.fields_for :categories, @photo.categories.build do |categories_fields| %>
+        <%= categories_fields.label "Add a Category:" %>
+        <%= categories_fields.text_field :name %>
+        <%end%><br>    
     <%= f.submit "Upload Image" %>
     <%end%>

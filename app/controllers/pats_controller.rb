@@ -16,8 +16,4 @@ class PatsController < ApplicationController
     def find_photo
         @photo = Photo.find(params[:photo_id])
     end
-
-    def pat_params
-        params.require(:pat).permit(:count, :user_id, :photo_id)
-    end
 end

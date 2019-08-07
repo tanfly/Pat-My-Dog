@@ -11,11 +11,4 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def authorized?
-    if !logged_in?
-      flash[:error] = "You are not logged in"
-      redirect_to login_path
-    end
-  end
-
 end

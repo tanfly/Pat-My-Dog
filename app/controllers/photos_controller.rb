@@ -16,6 +16,7 @@ class PhotosController < ApplicationController
     end
     
     def create
+        binding.pry
         @photo = Photo.new(photo_params)
         @user = params[:photo][:user_id]
             if @photo.save
@@ -47,10 +48,13 @@ class PhotosController < ApplicationController
     end
     
     def photo_params
-        params.require(:photo).permit(:image, :desription, :pat_count, :user_id, :album_id, category_ids:[], categories_attributes: [:name])
+        params.require(:photo).permit(:image, :description, :user_id, :album_id, category_ids:[], categories_attributes: [:name])
     end
 
     def require_login
-        authorized?
+        if !logged_in?
+            flash[:error] = "You are not logged in"
+            redirect_to login_path
+        end
     end
 end
