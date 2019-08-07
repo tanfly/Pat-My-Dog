@@ -1,12 +1,9 @@
 <h1> <%= link_to @photo.user.name, user_path(@photo.user) %>'s Photo of </h1>
-<h3>Pats: <%= photo_pat_count(@photo) %> 
+<h3>Pats: <p><%= @photo.pats.count %> <%= (@photo.pats.count) == 1 ? 'Pat' : 'Pats'%></p>
 
-<%= form_for @photo, :builder => PhotosFormBuilder do |f| %>
-    <div class="field">
-    <%= f.label "Click on me to give me a pat!:" %> <br>
-    <%= f.button(cl_image_tag "#{@photo.image}", size: "400", params: { pat_count: (@photo.pat_count += 1 )} ) %>
-    </div>
-    <%end%>
+<%= link_to (cl_image_tag "#{@photo.image}", size: "400"), photo_pats_path(@photo), :method => :post %>
+
+
 
 <h2><%= @photo.description %></h2>
 

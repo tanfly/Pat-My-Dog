@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
     before_action :require_login, only: [:show, :index, :new, :create, :edit, :destroy]
-    before_action :set_category, only: [:edit, :update, :destroy]
+    before_action :set_comment, only: [:edit, :update, :destroy]
 
     def new
         @comment = Comment.new
@@ -35,11 +35,11 @@ class CommentsController < ApplicationController
         authorized?
     end
 
-    def set_category
+    def set_comment
         @comment = Comment.find(params[:id])
     end
 
-    def categories_params
+    def comment_params
         params.require(:comment).permit(:content, :user_id, :photo_id)
     end
 end

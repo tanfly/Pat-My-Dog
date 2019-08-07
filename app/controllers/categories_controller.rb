@@ -51,7 +51,7 @@ class CategoriesController < ApplicationController
         @category = Category.find(params[:id])
     end
 
-    def categories_params
+    def category_params
         params.require(:category).permit(:name, photo_ids:[])
     end
 end

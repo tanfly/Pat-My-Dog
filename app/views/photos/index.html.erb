@@ -1,6 +1,6 @@
 <% @photos.each do |photo| %>
 <div class="image">
-  <%= image_tag "#{photo.image}", size: "200", :angle=>90 %><br>
+  <%= link_to (image_tag "#{photo.image}", size: "200"), user_photo_path(@user, photo)%><br>
 <% end %>
 </div>
 <br>

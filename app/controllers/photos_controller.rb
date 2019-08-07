@@ -8,8 +8,7 @@ class PhotosController < ApplicationController
     end
     
     def show
-        @pat_count = @photo.pat_count
-        @photo = Photo.find_by(id: params[:id])
+        @pats = @photo.pats
     end
     
     def new
