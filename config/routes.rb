@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :photos 
+    post '/photos/:id' => 'photos#show'
   end
 
   resources :photos

@@ -1,6 +1,10 @@
-<%= form_for [@user, @photo] do |f| %>
-    <%= f.label :image %>
-    <%= f.file_field :image%><br><br>
+<%= form_for [@photo] do |f| %>
+    <%= f.label :image%>
+    <%= f.file_field :image, :transformation=>[
+        {:width=>100, :crop=>"scale"},
+        {:angle=>90}
+        ] %>
+        <br><br><br>
     <%= f.label :description %><br>
     <%= f.text_area :description %><br>
     <%= f.label :categories %><br>
@@ -10,5 +14,6 @@
         <%= b.label %>
         </p>
         <%end%><br>
+        <%= hidden_field_tag "photo[user_id]", @photo.user_id %>
     <%= f.submit "Upload Image" %>
     <%end%>

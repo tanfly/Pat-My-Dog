@@ -4,25 +4,26 @@ class PhotosController < ApplicationController
     
     def index
         @user = User.find_by(id: params[:user_id])
-        @photos = @user.photos
+        @photos = User.find(params[:user_id]).photos
     end
     
     def show
+        @pat_count = @photo.pat_count
+        @photo = Photo.find_by(id: params[:id])
     end
     
     def new
-        @user = User.find_by_id(params[:id])
-        @photo = Photo.new
+        @photo = Photo.new(user_id: params[:user_id])
     end
     
     def create
         @photo = Photo.new(photo_params)
-        @photo.user_id = params[:user_id]
+        @user = params[:photo][:user_id]
             if @photo.save
-                redirect_to user_photo_path(@photo.user, @photo)
+                redirect_to user_photo_path(@user, @photo)
             else
                 flash[:error] = "Please ensure all areas are filled out correctly."
-                redirect_to new_user_photo_path(@photo.user)
+                redirect_to new_user_photo_path(@user)
             end
     end
     
@@ -47,7 +48,7 @@ class PhotosController < ApplicationController
     end
     
     def photo_params
-        params.require(:photo).permit(:desription, :pat_count, :user_id, :album_id, category_ids:[], categories_attributes: [:name])
+        params.require(:photo).permit(:image, :desription, :pat_count, :user_id, :album_id, category_ids:[], categories_attributes: [:name])
     end
 
     def require_login

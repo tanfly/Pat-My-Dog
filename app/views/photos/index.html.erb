@@ -1,0 +1,7 @@
+<% @photos.each do |photo| %>
+<div class="image">
+  <%= image_tag "#{photo.image}", size: "200", :angle=>90 %><br>
+<% end %>
+</div>
+<br>
+<%= link_to "Add New Photo", new_user_photo_path(@user) %>

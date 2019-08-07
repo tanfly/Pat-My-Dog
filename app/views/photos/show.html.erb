@@ -1,14 +1,20 @@
-<%= image_tag(photo.image_url, :alt => photo.short_name) %>
+<h1> <%= link_to @photo.user.name, user_path(@photo.user) %>'s Photo of </h1>
+<h3>Pats: <%= photo_pat_count(@photo) %> 
 
-<%= image_tag(photo.image_url(:thumbnail), :width => 50, :height => 50) %>
+<%= form_for @photo, :builder => PhotosFormBuilder do |f| %>
+    <div class="field">
+    <%= f.label "Click on me to give me a pat!:" %> <br>
+    <%= f.button(cl_image_tag "#{@photo.image}", size: "400", params: { pat_count: (@photo.pat_count += 1 )} ) %>
+    </div>
+    <%end%>
 
-<img class="img-responsive" src="<%= image_tag(photo.image_url, :alt => photo.short_name) %>" alt="Chania">
+<h2><%= @photo.description %></h2>
 
-<h6> Categories: </h6>
+
+<h5> Categories: </h5>
 <% @photo.categories.each do |category| %>
+    <h6><%= link_to category.name, category_path(category)%></h6>
+    <%end%>
     
 
-<h1> Comments: </h1>
-<% @photo.comments.each do |comment| %>
-    <p> <%=comment.user%> says: <%= comment.content %> </p>
-    <%end%>
+ <h1> Comments: </h1>

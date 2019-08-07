@@ -9,4 +9,6 @@
   <%end%>
 </p>
 
-<%= link_to 'Edit Your Info', edit_user_path(@user) %> | <%= link_to "Pat Some Dogs!", photo_path %>
+
+
+<%= link_to 'Edit Your Info', edit_user_path(@user) %> | <%= link_to "Pat Some Dogs!", photo_path %> | <%= link_to "Add Some Photos of Your Dog", new_user_photo_path(@user) %> | <%= link_to "See Your Dog's Photos", user_photos_path(@user) %>

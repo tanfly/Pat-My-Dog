@@ -1,4 +1,4 @@
 <h1><%= @category.name %></h1>
-<% @category.photo_ids.each do |photo_id|%>
-    <%= link_to @photo.image, photo_path(photo_id)%>
+<% @photos.each do |photo| %>
+    <%= link_to (image_tag "#{photo.image}", size: "200"), photo_path(photo.id)%>
     <%end%>

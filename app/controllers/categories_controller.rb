@@ -8,6 +8,10 @@ class CategoriesController < ApplicationController
     end
 
     def show
+        @photos = []
+        @category.photo_ids.each do |photo_id| 
+           @photos << Photo.find_by(id: photo_id)
+        end
     end
 
     def new
