@@ -16,6 +16,7 @@ class PhotosController < ApplicationController
     def new
         @user = User.find(params[:user_id])
         @photo = Photo.new
+        @photo.categories.build
     end
     
     def create

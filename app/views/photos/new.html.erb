@@ -15,5 +15,9 @@
         <%= b.label %>
         </p>
         <%end%> 
+    <%= f.fields_for :categories do |category_builder| %>
+        <%= category_builder.label :add_a_new_category %>
+        <%= category_builder.text_field :name %>
+        <%end%> 
     <%= f.submit "Upload Image" %>
     <%end%>
