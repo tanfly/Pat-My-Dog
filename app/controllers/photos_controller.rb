@@ -3,25 +3,24 @@ class PhotosController < ApplicationController
     before_action :set_photo, only: [:show, :edit, :update, :destroy]
     
     def index
-        @user = User.find_by(id: params[:user_id])
+        @user = User.find(params[:user_id])
         @photos = User.find(params[:user_id]).photos
     end
     
     def show
-        @photo = Photo.find_by(params[:id])
-        @user = User.find_by(params[:user_id])
+        @photo = Photo.find(params[:id])
+        @user = User.find(params[:user_id])
         @pats = @photo.pats
     end
     
     def new
-        @user = User.find_by_id(params[:user_id])
+        @user = User.find(params[:user_id])
         @photo = Photo.new
     end
     
     def create
         @photo = Photo.new(photo_params)
         @photo.user_id = params[:photo][:user_id]
-        binding.pry
             if @photo.save
                 redirect_to user_photo_path(@photo.user_id, @photo.id)
             else
