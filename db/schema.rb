@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_07_201729) do
+ActiveRecord::Schema.define(version: 2019_08_08_020218) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2019_08_07_201729) do
   end
 
   create_table "pats", force: :cascade do |t|
-    t.integer "count"
     t.integer "user_id"
     t.integer "photo_id"
     t.datetime "created_at", null: false

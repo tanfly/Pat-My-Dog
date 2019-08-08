@@ -39,7 +39,10 @@ class UsersController < ApplicationController
     private
 
     def require_login
-        authorized?
+        if !logged_in?
+            flash[:error] = "You are not logged in"
+            redirect_to login_path
+        end
     end
 
     def set_user

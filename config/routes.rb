@@ -6,10 +6,10 @@ Rails.application.routes.draw do
     resources :photos 
   end
 
-  resources :photos do
+  resources :photos do 
     resources :pats
   end
-  
+
   resources :albums
   resources :categories
 

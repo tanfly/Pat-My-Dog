@@ -1,11 +1,11 @@
-<%= form_for [@photo] do |f| %>
+<%= form_for [@user, @photo] do |f| %>
     <%= f.label :image%>
     <%= f.file_field :image, :transformation=>[
         {:width=>100, :crop=>"scale"},
         {:angle=>90}
         ] %>
         <br><br><br>
-    <%= hidden_field_tag "photo[user_id]", @photo.user_id, value: current_user.id %><br>
+    <%= hidden_field_tag "photo[user_id]", @user.id %><br>
     <%= f.label :description %><br>
     <%= f.text_area :description %><br>
     <%= f.label :categories %><br>
@@ -14,10 +14,6 @@
         <%= b.check_box %>
         <%= b.label %>
         </p>
-        <%end%>
-    <%= f.fields_for :categories, @photo.categories.build do |categories_fields| %>
-        <%= categories_fields.label "Add a Category:" %>
-        <%= categories_fields.text_field :name %>
-        <%end%><br>    
+        <%end%> 
     <%= f.submit "Upload Image" %>
     <%end%>

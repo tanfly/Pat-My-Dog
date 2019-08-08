@@ -8,19 +8,22 @@ class PhotosController < ApplicationController
     end
     
     def show
+        @photo = Photo.find_by(params[:id])
+        @user = User.find_by(params[:user_id])
         @pats = @photo.pats
     end
     
     def new
-        @photo = Photo.new(user_id: params[:user_id])
+        @user = User.find_by_id(params[:user_id])
+        @photo = Photo.new
     end
     
     def create
-        binding.pry
         @photo = Photo.new(photo_params)
-        @user = params[:photo][:user_id]
+        @photo.user_id = params[:photo][:user_id]
+        binding.pry
             if @photo.save
-                redirect_to user_photo_path(@user, @photo)
+                redirect_to user_photo_path(@photo.user_id, @photo.id)
             else
                 flash[:error] = "Please ensure all areas are filled out correctly."
                 redirect_to new_user_photo_path(@user)
