@@ -11,6 +11,7 @@ class PhotosController < ApplicationController
         @photo = Photo.find(params[:id])
         @user = User.find(params[:user_id])
         @pats = @photo.pats
+        @comments = @photo.comments
     end
     
     def new

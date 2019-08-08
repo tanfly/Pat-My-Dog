@@ -5,8 +5,9 @@
 
 
 
-<h2><%= @photo.description %></h2>
-
+<h2>Description:</h2> <h4><%= @photo.description %></h4>
+<br>
+<br>
 
 <h5> Categories: </h5>
 <% @photo.categories.each do |category| %>
@@ -15,3 +16,6 @@
     
 
  <h1> Comments: </h1>
+ <%= @comments.each do |comment| %>
+    <%= link_to comment.user.username, user_path(comment.user) %> said
+    <%= comment.content %>
