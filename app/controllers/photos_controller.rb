@@ -3,31 +3,31 @@ class PhotosController < ApplicationController
     before_action :set_photo, only: [:show, :edit, :update, :destroy]
     
     def index
-        @user = User.find(params[:user_id])
-        @photos = User.find(params[:user_id]).photos
+        @profile = Profile.find(params[:profile_id])
+        @photos = Profile.find(params[:profile_id]).photos
     end
     
     def show
         @photo = Photo.find(params[:id])
-        @user = User.find(params[:user_id])
+        @profile = Profile.find(params[:profile_id])
+        @user = @profile.user
         @pats = @photo.pats
-        @comments = @photo.comments
     end
     
     def new
-        @user = User.find(params[:user_id])
+        @profile = Profile.find(params[:profile_id])
         @photo = Photo.new
         @photo.categories.build
     end
     
     def create
         @photo = Photo.new(photo_params)
-        @photo.user_id = params[:photo][:user_id]
+        @photo.profile_id = params[:photo][:profile_id]
             if @photo.save
-                redirect_to user_photo_path(@photo.user_id, @photo.id)
+                redirect_to profile_photo_path(@photo.profile_id, @photo.id)
             else
                 flash[:error] = "Please ensure all areas are filled out correctly."
-                redirect_to new_user_photo_path(@user)
+                redirect_to new_profile_photo_path(@photo.profile_id)
             end
     end
     
@@ -52,7 +52,7 @@ class PhotosController < ApplicationController
     end
     
     def photo_params
-        params.require(:photo).permit(:image, :description, :user_id, :album_id, category_ids:[], categories_attributes: [:name])
+        params.require(:photo).permit(:image, :description, :profile_id, :album_id, category_ids:[], categories_attributes: [:name])
     end
 
     def require_login

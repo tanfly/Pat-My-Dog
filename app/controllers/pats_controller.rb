@@ -3,8 +3,8 @@ class PatsController < ApplicationController
     before_action :find_photo
 
     def index
-        pat = @photo.pats.create(user_id: current_user.id)
-        render '/photos/show'
+            @photo.pats.create(user_id: current_user.id)
+            redirect_to profile_photo_path(@photo.profile_id, @photo.id)
     end
 
     private

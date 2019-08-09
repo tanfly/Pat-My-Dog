@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-    belongs_to :poster, class_name: 'User', foreign_key: 'user_id'
-    belongs_to :post, class_name: 'Photo', foreign_key: 'photo_id'
+    belongs_to :user, foreign_key: 'user_id'
+    belongs_to :photo, foreign_key: 'photo_id'
     validates_presence_of :content, :user_id
 end

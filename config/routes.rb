@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :users do
-    resources :photos 
+    resources :profile 
+  end
+
+  resources :profile do 
+    resources :photos
   end
 
   resources :photos do 

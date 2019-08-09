@@ -1,7 +1,8 @@
-<h1> <%= link_to @photo.user.name, user_path(@photo.user) %>'s Photo of </h1>
+<h1> <%= link_to @profile.user.name, profile_path(@profile) %>'s Photo of </h1>
 <h3><strong>Pats: <p><%= @photo.pats.count %> <%= (@photo.pats.count) == 1 ? 'Pat' : 'Pats'%></p></strong></h3>
 <h2> Click me to give me a pat! </h2>
 <%= link_to (cl_image_tag "#{@photo.image}", size: "400"), photo_pats_path(@photo), :method => :post %>
+
 
 
 
@@ -14,8 +15,3 @@
     <h6><%= link_to category.name, category_path(category)%></h6>
     <%end%>
     
-
- <h1> Comments: </h1>
- <%= @comments.each do |comment| %>
-    <%= link_to comment.user.username, user_path(comment.user) %> said
-    <%= comment.content %>
