@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :profile 
   end
 
-  resources :profile do 
+  resources :profiles do 
     resources :photos
   end
 

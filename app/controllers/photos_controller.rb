@@ -3,12 +3,10 @@ class PhotosController < ApplicationController
     before_action :set_photo, only: [:show, :edit, :update, :destroy]
     
     def index
-        @profile = Profile.find(params[:profile_id])
-        @photos = Profile.find(params[:profile_id]).photos
+        @photos = Photo.all
     end
     
     def show
-        @photo = Photo.find(params[:id])
         @profile = Profile.find(params[:profile_id])
         @user = @profile.user
         @pats = @photo.pats
@@ -17,17 +15,17 @@ class PhotosController < ApplicationController
     def new
         @profile = Profile.find(params[:profile_id])
         @photo = Photo.new
-        @photo.categories.build
     end
     
     def create
         @photo = Photo.new(photo_params)
         @photo.profile_id = params[:photo][:profile_id]
+        @photo.categories.build
             if @photo.save
                 redirect_to profile_photo_path(@photo.profile_id, @photo.id)
             else
                 flash[:error] = "Please ensure all areas are filled out correctly."
-                redirect_to new_profile_photo_path(@photo.profile_id)
+                redirect_to request.referer
             end
     end
     
