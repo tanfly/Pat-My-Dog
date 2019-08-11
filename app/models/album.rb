@@ -1,5 +1,5 @@
 class Album < ApplicationRecord
-    belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
+    belongs_to :profile
     has_many :photos
     validates_presence_of :name
 end

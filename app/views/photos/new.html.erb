@@ -1,15 +1,12 @@
 <%= form_for [@profile, @photo] do |f| %>
     <%= f.label :image%>
-    <%= f.file_field :image, :transformation=>[
-        {:width=>100, :crop=>"scale"},
-        {:angle=>90}
-        ] %>
+    <%= f.file_field :image %>
         <br><br><br>
     <%= hidden_field_tag "photo[profile_id]", @profile.id %><br>
     <%= f.label :description %><br>
     <%= f.text_area :description %><br>
     <%= f.label :categories %><br>
-    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+    <%= collection_check_boxes(:photo, :category_ids, @categories, :id, :name) do |b| %>
         <p>
         <%= b.check_box %>
         <%= b.label %>

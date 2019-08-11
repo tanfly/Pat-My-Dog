@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_003804) do
+ActiveRecord::Schema.define(version: 2019_08_09_185255) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "user_id"
+    t.integer "profile_id"
   end
 
   create_table "categories", force: :cascade do |t|

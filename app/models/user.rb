@@ -1,7 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
     has_one :profile, dependent: :destroy
-    has_many :albums, dependent: :destroy
     has_many :comments, dependent: :destroy
     has_many :pats, dependent: :destroy
     validates_presence_of :name

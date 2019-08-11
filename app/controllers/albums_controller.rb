@@ -3,22 +3,25 @@ class AlbumsController < ApplicationController
     before_action :set_album, only: [:show, :edit, :update, :destroy]
     
     def index
-        @albums = current_user.albums 
+        @profile = Profile.find(params[:profile_id])
+        @albums =  @profile.albums
     end
     
     def show
+        @profile = @album.profile
     end
     
     def new
         @album = Album.new
+        @profile = current_profile
+        @photos = current_profile.photos.where("album_id is null")
     end
     
     def create
-        album = Album.new(album_params)
-        if album.save
-            redirect_to album_path(album)
+        @album = Album.new(album_params)
+        if @album.save
+            redirect_to album_path(@album)
         else 
-            flash[:message] = "Please ensure all form areas are filled out."
             redirect_to new_album_path
         end
     end
@@ -51,6 +54,6 @@ class AlbumsController < ApplicationController
     end
     
     def album_params
-        params.require(:album).permit(:name, :description, :user_id)
+        params.require(:album).permit(:name, :description, :profile_id, photo_ids:[])
     end
 end

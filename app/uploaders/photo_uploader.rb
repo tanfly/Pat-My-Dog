@@ -1,14 +1,19 @@
 class PhotoUploader < CarrierWave::Uploader::Base
-  
+
   include Cloudinary::CarrierWave
 
-  
-  version :tiny do 
-    process :resize_to_fill => [20, 20]
-  end
+  version :thumbnail do
+    eager
+    resize_to_fit(150, 150)
+    cloudinary_transformation :quality => 80,        
+    :angle=> "ignore" 
+  end  
 
   version :profile_size do
-    process :resize_to_fill => [300, 300]
+    eager
+    resize_to_fit(400, 400)
+    cloudinary_transformation :quality => 80,   
+    :angle=> "ignore"
   end
 
   def extension_whitelist

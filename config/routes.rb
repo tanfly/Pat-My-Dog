@@ -14,7 +14,15 @@ Rails.application.routes.draw do
     resources :pats
   end
 
-  resources :albums
+  resources :profiles do
+    resources :albums
+  end
+
+  resources :albums do 
+    resources :photos
+  end
+
+  resources :comments
   resources :categories
 
   get '/signup' => 'users#new'

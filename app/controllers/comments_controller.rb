@@ -2,17 +2,14 @@ class CommentsController < ApplicationController
     before_action :require_login, only: [:show, :index, :new, :create, :edit, :destroy]
     before_action :set_comment, only: [:edit, :update, :destroy]
 
-    def new
-        @comment = Comment.new
-    end
 
     def create
         comment = Comment.new(comment_params)
         if comment.save
-            redirect_to photo_path(comment.photo_id)
+            redirect_to request.referer
         else
             flash[:alert] = "Please make sure all form areas are filled out."
-            redirect_to new_comment_path
+            redirect_to request.referer
         end
     end
 

@@ -1,0 +1,23 @@
+<h1>Your Albums:</h1>
+
+<div class="actions">
+  <a class="upload_link" href="<%= new_profile_album_path(@profile) %>">Add album</a>
+</div>
+
+<div class="albums">
+  <% if @albums.empty? %>
+    <p>No albums were added yet.</p>
+  <% end %>
+
+  <% @albums.each do |album| %>
+    <div class="album">
+      <h2>
+        <%= link_to(album) do %>
+          <%= album.title %>
+          <%= image_tag(album.cover.image.thumbnail.url, :class => "thumbnail inline") %>
+        <% end %>
+      </h2>
+    </div>
+  <% end %>
+</div>
+

@@ -1,0 +1,21 @@
+<h1><%=link_to @profile.user.username, profile_path(@profile)%>'s Album: <%= @album.name %></h1>
+
+<div class="actions">
+  <a class="upload_link" href="<%= new_album_photo_path(@album) %>">Add photo</a>
+</div>
+
+<div class="albums">
+  <% if @album.photos.empty? %>
+    <p>No photos were added to the album yet.</p>
+  <% end %>
+
+  <% @album.photos.each do |photo| %>
+    <div class="photo">
+      <%= link_to (cl_image_tag photo.image.thumbnail.url, :class => "thumbnail inline"), photo_path(photo)%>
+       <h2><%= photo.description %></h2>
+    </div>
+  <% end %>
+</div>
+
+<a href="<%= profile_albums_path(@profile) %>" class="back_link">Back to albums</a>
+

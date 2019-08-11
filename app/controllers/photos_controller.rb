@@ -3,24 +3,37 @@ class PhotosController < ApplicationController
     before_action :set_photo, only: [:show, :edit, :update, :destroy]
     
     def index
+        if params[:profile_id]
+            profile = Profile.find(params[:profile_id])
+            @photos = profile.photos
+        else
         @photos = Photo.all
+        end
     end
     
     def show
-        @profile = Profile.find(params[:profile_id])
+        @profile = @photo.profile
         @user = @profile.user
         @pats = @photo.pats
+        @comment = @photo.comments.build
+        @comments = @photo.comments.where("content is not null and content != ''")
+        @categories = @photo.categories.where("name is not null and name != ''")
     end
     
     def new
+        if current_profile.id = params[:profile_id]
         @profile = Profile.find(params[:profile_id])
         @photo = Photo.new
+        @photo.categories.build
+        @categories = Category.where("name is not null and name != ''")
+        else 
+            redirect_to new_profile_photo_path(current_profile.id)
+        end
     end
     
     def create
         @photo = Photo.new(photo_params)
         @photo.profile_id = params[:photo][:profile_id]
-        @photo.categories.build
             if @photo.save
                 redirect_to profile_photo_path(@photo.profile_id, @photo.id)
             else
@@ -34,13 +47,13 @@ class PhotosController < ApplicationController
     
     def update
         @photo.update(photo_params)
-        redirect_to user_photo_path(@photo)
+        redirect_to profile_photo_path(@photo.profile_id, @photo.id)
     end
     
     def destroy
         @photo.destroy
         flash[:notice] = "Photo deleted."
-        redirect_to user_pictures_path
+        redirect_to profile_photo_path
     end
     
     private
@@ -59,4 +72,5 @@ class PhotosController < ApplicationController
             redirect_to login_path
         end
     end
+    
 end
