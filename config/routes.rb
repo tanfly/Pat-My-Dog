@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :users do
-    resources :profile 
+    resources :profiles 
   end
 
   resources :profiles do 
