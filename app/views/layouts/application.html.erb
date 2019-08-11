@@ -71,7 +71,7 @@ button:hover, a:hover {
     <div class="col-sm-2">
 <br>
 <div class="card">
-  <%= link_to (cl_image_tag current_user.avatar.thumbnail), user_path(current_user)%>
+  <%= link_to (image_tag current_user.avatar.thumbnail), user_path(current_user)%>
   <h1><%=link_to current_user.username, user_path(current_user)%></h1>
   <p><%=current_user.pats.count%> <%= (current_user.pats.count) == 1 ? 'Pat' : 'Pats'%> Given</p>
 </div>

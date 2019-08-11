@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   resources :comments
   resources :categories
 
+  get '/auth/facebook/callback' => 'sessions#create'
+
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 

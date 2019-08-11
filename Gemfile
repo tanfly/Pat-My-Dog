@@ -20,7 +20,9 @@ gem 'pry'
 gem 'bcrypt'
 gem 'carrierwave'
 gem 'cloudinary'
-gem 'figaro'
+gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

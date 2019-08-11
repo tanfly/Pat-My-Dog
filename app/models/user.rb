@@ -11,4 +11,12 @@ class User < ApplicationRecord
     def make_profile
         Profile.create(:user_id => self.id)
     end
+
+    def self.find_or_create_by_omniauth(auth)
+        self.where(:email => auth["info"]["email"]).first_or_create do |user|
+            user.name = auth["info"]["name"]
+            user.avatar = auth["info"]["image"]
+            user.password = SecureRandom.hex
+        end
+    end
 end
