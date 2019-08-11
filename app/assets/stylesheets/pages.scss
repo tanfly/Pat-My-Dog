@@ -1,3 +1,22 @@
-// Place all the styles related to the Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  background-image: url("https://i.ibb.co/FzPcnFy/paw-print-220229-1280.png");
+  min-height: 610px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.container {
+  position: absolute;
+  right: 14px;
+  margin: 30px;
+  max-width: 300px;
+  padding: 35px;
+  background-color: white;
+}

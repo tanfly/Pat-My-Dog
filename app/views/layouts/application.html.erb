@@ -21,25 +21,73 @@ body {
   font-size: 30px;
 }
 
-.image {
-    image-orientation: from-image;
-}
-
 
 .content {padding:20px;}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
 </style>
 </head>
 <body>
-
 <div class="header">
   <h1>Pat My Dog</h1>
   <p>Pat some dogs, let your dog get pats!</p>
 </div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+<br>
+<div class="card">
+  <%= link_to (cl_image_tag current_user.avatar.thumbnail), user_path(current_user)%>
+  <h1><%=link_to current_user.username, user_path(current_user)%></h1>
+  <p><%=current_user.pats.count%> <%= (current_user.pats.count) == 1 ? 'Pat' : 'Pats'%> Given</p>
+</div>
+      <h3 style="text-align:center">Menu</h3>
+      <p style="text-align:center"><%= link_to "Pat Some Dogs!", photo_path %></p>
+      <p style="text-align:center">link</p>
+      <p style="text-align:center">link</p>
+    </div>
+  <div class="col-sm-10">
 
 <div class="content">
 
   <%= yield %>
-
+</div>
+</div>
+</div>
 </div>
 
 <div class="footer">
