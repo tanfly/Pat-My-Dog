@@ -47,8 +47,8 @@ class PhotosController < ApplicationController
     end
     
     def destroy
-        @photo.destroy
-        redirect_to profile_photo_path
+        Photo.find(params[:id]).destroy
+        redirect_to profile_photos_path(current_profile)
     end
     
     private

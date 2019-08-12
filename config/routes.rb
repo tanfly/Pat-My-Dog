@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :photos
   end
 
-  resources :photos, only: [:show, :index] do 
+  resources :photos, only: [:show, :index, :destroy] do 
     resources :pats
   end
 
