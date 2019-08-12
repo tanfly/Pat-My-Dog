@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
     def new
+        render :layout => 'login'
     end
 
     def create
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
                 user.update_attribute(:last_login, Time.now)
                 redirect_to user_path(user)
             else
-                flash[:message] = "Username or Password is Incorrect"
+                @errors = user.error.full_messages
                 redirect_to login_path
             end
         end

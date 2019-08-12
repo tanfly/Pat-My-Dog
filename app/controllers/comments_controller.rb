@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
         if comment.save
             redirect_to request.referer
         else
-            flash[:alert] = "Please make sure all form areas are filled out."
+            @errors = comment.errors.full_messages
             redirect_to request.referer
         end
     end
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
 
     def require_login
         if !logged_in?
-            flash[:error] = "You are not logged in"
+            @errors = ["Please login first."]
             redirect_to login_path
         end
     end

@@ -11,7 +11,7 @@ class PatsController < ApplicationController
 
     def require_login
         if !logged_in?
-            flash[:error] = "You are not logged in"
+            @errors = ["Please login first."]
             redirect_to login_path
         end
     end

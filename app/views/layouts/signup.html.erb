@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Pat My Dog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>
+.error_explanation {
+  position: relative;
+  padding: 10px;
+  background-color: white;
+  border-radius:.7em;
+  border: 2px solid;
+  border-color: red;
+  color: red;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: auto;
+  height: auto;
+}
+
+.closebtn {
+  position: absolute;
+  right: 100px;
+  top: 100px;
+  color: red;
+  font-weight: bold;
+}
+
+</style>
+</head>
+<body>
+<% if @errors %>
+<% if @errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(user.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+  <ul>
+  <% user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+<%end%>
+<div id="closebtn" onclick="this.parentElement.style.display='none';">&times;</div>
+
+<%= yield %>
+</body>

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
-        render :layout => 'signin'
+        render :layout => 'signup'
     end
 
     def create
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             redirect_to user_path(user)
         else
-            flash[:message] = "Please ensure all form areas are filled correctly"
+            @errors = user.errors.full_messages
             redirect_to new_user_path
         end
     end
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
     def require_login
         if !logged_in?
-            flash[:error] = "You are not logged in"
+            @errors = ["Please login first."]
             redirect_to login_path
         end
     end

@@ -21,25 +21,20 @@ class PhotosController < ApplicationController
     end
     
     def new
-        if params[:profile_id]
-            @profile = Profile.find(params[:profile_id])
+            @profile = current_user.profile
             @photo = Photo.new
-            @photo.categories.build
             @categories = Category.where("name is not null and name != ''")
-        else 
-            @profile = current_profile.id
-            redirect_to new_profile_photo_path(@profile)
-        end
+            @photo.categories.build
     end
     
     def create
+        @profile = current_user.profile
         @photo = Photo.new(photo_params)
         @photo.profile_id = params[:photo][:profile_id]
             if @photo.save
                 redirect_to profile_photo_path(@photo.profile_id, @photo.id)
             else
-                flash[:error] = "Please ensure all areas are filled out correctly."
-                redirect_to request.referer
+                render :new
             end
     end
     
@@ -53,7 +48,6 @@ class PhotosController < ApplicationController
     
     def destroy
         @photo.destroy
-        flash[:notice] = "Photo deleted."
         redirect_to profile_photo_path
     end
     
@@ -69,7 +63,7 @@ class PhotosController < ApplicationController
 
     def require_login
         if !logged_in?
-            flash[:error] = "You are not logged in"
+            @errors = ["Please login first."]
             redirect_to login_path
         end
     end

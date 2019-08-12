@@ -11,7 +11,6 @@ class ProfilesController < ApplicationController
     def destroy
         @profile.destroy
         @profile.user.destroy
-        flash[:message] = "Profile Successfully Deleted"
         redirect_to signup_path
     end
 
@@ -19,7 +18,7 @@ class ProfilesController < ApplicationController
 
     def require_login
         if !logged_in?
-            flash[:error] = "You are not logged in"
+            @errors = ["Please login first."]
             redirect_to login_path
         end
     end

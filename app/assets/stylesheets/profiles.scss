@@ -4,3 +4,26 @@
     height: 50px;
     border-radius: 50%;
   }
+
+  .error_explanation {
+    position: relative;
+    padding: 10px;
+    background-color: white;
+    border-radius:.7em;
+    border: 2px solid;
+    border-color: red;
+    color: red;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: auto;
+    height: auto;
+  }
+  
+  .closebtn {
+    position: absolute;
+    right: 100px;
+    top: 100px;
+    color: red;
+    font-weight: bold;
+  }

@@ -36,7 +36,6 @@ class AlbumsController < ApplicationController
     
     def destroy
         @album.destroy
-        flash[:notice] = "Album deleted."
         redirect_to album_path
     end
     
@@ -44,7 +43,7 @@ class AlbumsController < ApplicationController
 
     def require_login
         if !logged_in?
-            flash[:error] = "You are not logged in"
+            @errors = ["Please login first."]
             redirect_to login_path
         end
     end
