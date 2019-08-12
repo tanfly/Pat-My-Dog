@@ -1,6 +1,10 @@
-<div class="photo">
-<h1><%= image_tag(@user.avatar?(["thumbnail", "url"]), :class => "thumbnail inline") %><%= @user.username? %>'s Profile </h1>
-</div>
+
+<h1>  <% if current_user.avatar.present? %>
+<%= link_to (cl_image_tag current_user.avatar.thumbnail), user_path(current_user)%><br>
+<% else %>
+<%= link_to (image_tag current_user.remote_image_url), user_path(current_user) %><br>
+<% end %><%= @user.username? %>'s Profile </h1>
+
 
 
 

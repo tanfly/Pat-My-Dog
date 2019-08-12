@@ -1,15 +1,31 @@
 <h1> Hi there, <%= @user.name%>!</h1>
-
+<h2> You have given out a total of <%= @user.pats.count %> <%= (@user.pats.count) == 1 ? 'Pat' : 'Pats'%></h2>
+<h3><%= link_to "Pat Some Dogs!", photos_path %></h3>
 <p>
-  <strong>Avatar:</strong>
+  <strong>Avatar:</strong><br>
   <% if @user.avatar.blank? && @user.remote_image_url.blank? %>
   <%= link_to "Add Avatar", edit_user_path(@user) %>
   <%else%>
-  <%= image_tag "#{@user.avatar?(["thumbnail"])}" %> </p>
+    <% if current_user.avatar.present? %>
+    <%= cl_image_tag @user.avatar.thumbnail%><br>
+    <% else %>
+    <%= image_tag @user.remote_image_url %><br>
+    <% end %>
   <%end%>
 </p>
+<br>
+<p>
+  <strong>Name:</strong><br>
+  <%= @user.name %>
+</p>
+<br>
+<p>
+  <strong>Username:</strong><br>
+  <%= @user.username %>
+</p>
+<br>
 
 
 
-<%= link_to 'Edit Your Info', edit_user_path(@user) %> | <%= link_to "Pat Some Dogs!", photos_path %> | <%= link_to "Add Some Photos of Your Dog", new_profile_photo_path(@user.profile) %> | <%= link_to "See Your Dog's Photos", profile_photos_path(@user.profile) %> |
-<%= link_to "Logout", logout_path %>
+
+<%= link_to 'Edit Your Info', edit_user_path(@user) %> 
