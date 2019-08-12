@@ -8,46 +8,62 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
-.error_explanation {
+body, html {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  background-image: url("https://i.ibb.co/FzPcnFy/paw-print-220229-1280.png");
+  min-height: 650px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
-  padding: 10px;
-  background-color: white;
-  border-radius:.7em;
-  border: 2px solid;
-  border-color: red;
-  color: red;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  width: auto;
-  height: auto;
 }
 
-.closebtn {
+/* Add styles to the form container */
+.container {
   position: absolute;
-  right: 100px;
-  top: 100px;
-  color: red;
-  font-weight: bold;
+  right: 0;
+  margin: 20px;
+  max-width: 300px;
+  padding: 16px;
+  background-color: white;
 }
 
+/* Full-width input fields */
+  input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
 </style>
-</head>
 <body>
-<% if @errors %>
-<% if @errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@errors.count, "error") %> prohibited this post from being saved:</h2>
-
-  <ul>
-  <% @errors.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-  </ul>
-</div>
-<% end %>
-<%end%>
-<div id="closebtn" onclick="this.parentElement.style.display='none';">&times;</div>
-
 <%= yield %>
 </body>

@@ -33,7 +33,7 @@ class PhotosController < ApplicationController
         @photo.profile_id = params[:photo][:profile_id]
             if @photo.save
                 redirect_to profile_photo_path(@photo.profile_id, @photo.id)
-            else
+            else  
                 render :new
             end
     end

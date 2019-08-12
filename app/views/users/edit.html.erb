@@ -1,3 +1,21 @@
+<%= stylesheet_link_tag "user" %>
+<% if @user.errors.any? %>
+   <div class="error_explanation">
+   <div class="closebtn" onclick="this.parentElement.style.display='none';">&times;</div>
+     <h2>
+       <%= pluralize(@user.errors.count, "error") %>
+       prohibited this post from being saved:
+     </h2>
+  
+     <ul>
+     <% @user.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+     </ul>
+   </div>
+ <% end %>
+
+
 <h1> Edit Your Info: </h1>
 <%= render partial: 'user', locals: {user: @user} %>
 

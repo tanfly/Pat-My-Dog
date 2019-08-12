@@ -5,7 +5,7 @@
 
 .bg-img {
   background-image: url("https://i.ibb.co/FzPcnFy/paw-print-220229-1280.png");
-  min-height: 610px;
+  min-height: 650px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,23 +24,24 @@
 
 .error_explanation {
   position: relative;
-  padding: 10px;
+  padding: 5px;
   background-color: white;
-  border-radius:.7em;
   border: 2px solid;
   border-color: red;
   color: red;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
   width: auto;
   height: auto;
 }
 
 .closebtn {
   position: absolute;
-  right: 100px;
-  top: 100px;
+  font-size: 1em;
+  padding: 5px;
+  top: 4px;
+  right: 16px;
   color: red;
   font-weight: bold;
 }

@@ -1,3 +1,6 @@
+
+
+
 <h1> <%= link_to @photo.profile.user.username?, profile_path(@photo.profile) %>'s Photo </h1>
 <% if @photo.album %>
 <h2>from <%= link_to @photo.album.name, profile_album_path(@profile, @photo.album) %>

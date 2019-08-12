@@ -13,4 +13,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.precompile += %w( pages.css photos.css albums.css profiles.css users.css categories.css sessions.scss users.scss)
+Rails.application.config.assets.precompile += %w( pages.scss photos.scss albums.scss profiles.scss users.scss categories.scss sessions.scss users.scss comments.scss)

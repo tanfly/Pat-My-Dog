@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :albums
   end
 
-  resources :albums do 
+  resources :albums, only: [:show, :index] do 
     resources :photos
   end
 

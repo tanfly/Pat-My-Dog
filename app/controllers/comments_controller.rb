@@ -4,11 +4,10 @@ class CommentsController < ApplicationController
 
 
     def create
-        comment = Comment.new(comment_params)
-        if comment.save
+        @comment = Comment.new(comment_params)
+        if @comment.save
             redirect_to request.referer
         else
-            @errors = comment.errors.full_messages
             redirect_to request.referer
         end
     end

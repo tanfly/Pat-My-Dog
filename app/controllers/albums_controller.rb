@@ -18,11 +18,12 @@ class AlbumsController < ApplicationController
     end
     
     def create
+        @profile = current_user.profile
         @album = Album.new(album_params)
         if @album.save
-            redirect_to album_path(@album)
+            redirect_to profile_album_path(@profile, @album)
         else 
-            redirect_to new_album_path
+            render :new
         end
     end
     
