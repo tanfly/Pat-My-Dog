@@ -1,8 +1,13 @@
 <%= stylesheet_link_tag "albums" %>
 
 <h1><%=link_to @profile.user.username?, profile_path(@profile)%>'s Album: <%= @album.name %></h1>
-
-
+<br>
+<% if @album.profile_id == @profile.id %>
+<%= form_tag profile_album_path(@profile, @album), method: "delete" do %>
+  <%= submit_tag "Delete This Album?" %>
+<% end %>
+<% end %>
+<br>
  <%= link_to "Add a Photo", new_album_photo_path(@album, profile_id: @profile) %>
 
 

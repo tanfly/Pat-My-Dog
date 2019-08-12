@@ -37,14 +37,13 @@ class AlbumsController < ApplicationController
     
     def destroy
         @album.destroy
-        redirect_to album_path
+        redirect_to profile_albums_path(current_profile)
     end
     
     private
 
     def require_login
         if !logged_in?
-            @errors = ["Please login first."]
             redirect_to login_path
         end
     end
