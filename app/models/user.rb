@@ -20,10 +20,6 @@ class User < ApplicationRecord
         end
     end
 
-    def avatar?(options_array)
-        self.avatar.present? ? ("#{self.avatar}" + "." + options_array.join(".")) : self.remote_image_url
-    end
-
     def username?
         if self.username.blank?
             ("User" + self.id.to_s)

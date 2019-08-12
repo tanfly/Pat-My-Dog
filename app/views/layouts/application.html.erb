@@ -109,8 +109,12 @@ body {
     <div class="col-sm-2">
 <br>
 <div class="card">
-  <%= link_to (image_tag current_user.avatar?(["thumbnail"])), user_path(current_user)%>
-  <h1><%=link_to current_user.username?, user_path(current_user)%></h1>
+  <% if current_user.avatar.present? %>
+  <%= link_to (cl_image_tag current_user.avatar.thumbnail), user_path(current_user)%><br>
+  <% else %>
+  <%= link_to (image_tag current_user.remote_image_url), user_path(current_user) %><br>
+  <% end %>
+  <%=link_to current_user.username?, user_path(current_user)%><br>
   <p><%=current_user.pats.count%> <%= (current_user.pats.count) == 1 ? 'Pat' : 'Pats'%> Given</p>
 </div>
       <h3 style="text-align:center">Menu</h3>
