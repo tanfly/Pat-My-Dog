@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
     def show
         if current_user
+            
             render :show
         else
             redirect_to root_path
@@ -12,12 +13,13 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
+        render :layout => 'signin'
     end
 
     def create
         user = User.new(user_params)
         if user.save
-            session[:user_id] = user.id 
+            session[:user_id] = user.id
             redirect_to user_path(user)
         else
             flash[:message] = "Please ensure all form areas are filled correctly"
@@ -50,6 +52,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:avatar, :name, :username, :password, :email, :last_login, :member_since, :age, :location)
+        params.require(:user).permit(:avatar, :remote_image_url, :name, :username, :password, :email, :last_login, :member_since, :age, :location)
     end
 end

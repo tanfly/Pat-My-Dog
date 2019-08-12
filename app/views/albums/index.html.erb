@@ -1,7 +1,7 @@
 <h1>Your Albums:</h1>
 
 <div class="actions">
-  <a class="upload_link" href="<%= new_profile_album_path(@profile) %>">Add album</a>
+  <%= link_to "Add Album", new_profile_album_path(@profile) %>
 </div>
 
 <div class="albums">
@@ -12,12 +12,10 @@
   <% @albums.each do |album| %>
     <div class="album">
       <h2>
-        <%= link_to(album) do %>
-          <%= album.title %>
-          <%= image_tag(album.cover.image.thumbnail.url, :class => "thumbnail inline") %>
+        <%= link_to album.name, profile_album_path(@profile, album) %>
+          <%= link_to image_tag(album.cover.image.thumbnail.url), profile_album_path(@profile, album), {:class => "thumbnail inline"} %>
         <% end %>
       </h2>
     </div>
-  <% end %>
 </div>
 

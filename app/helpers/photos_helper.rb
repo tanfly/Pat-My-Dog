@@ -1,7 +1,6 @@
 module PhotosHelper
     def photo_pats?(photo)
         if !photo.pats.count
-        else
             "Oh no! No pats for this good doggo yet. You can be the first!"
         end
     end

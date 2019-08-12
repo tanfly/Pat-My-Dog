@@ -12,8 +12,8 @@ class PhotosController < ApplicationController
     end
     
     def show
-        @profile = @photo.profile
-        @user = @profile.user
+        @user = current_user
+        @profile = @user.profile
         @pats = @photo.pats
         @comment = @photo.comments.build
         @comments = @photo.comments.where("content is not null and content != ''")
@@ -21,13 +21,14 @@ class PhotosController < ApplicationController
     end
     
     def new
-        if current_profile.id = params[:profile_id]
-        @profile = Profile.find(params[:profile_id])
-        @photo = Photo.new
-        @photo.categories.build
-        @categories = Category.where("name is not null and name != ''")
+        if params[:profile_id]
+            @profile = Profile.find(params[:profile_id])
+            @photo = Photo.new
+            @photo.categories.build
+            @categories = Category.where("name is not null and name != ''")
         else 
-            redirect_to new_profile_photo_path(current_profile.id)
+            @profile = current_profile.id
+            redirect_to new_profile_photo_path(@profile)
         end
     end
     

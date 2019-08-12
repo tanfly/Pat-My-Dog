@@ -15,9 +15,20 @@ class User < ApplicationRecord
     def self.find_or_create_by_omniauth(auth)
         self.where(:email => auth["info"]["email"]).first_or_create do |user|
             user.name = auth["info"]["name"]
-            user.remote_avatar_url = (auth["info"]["image"]).gsub('http://','https://')
+            user.remote_image_url = (auth["info"]["image"]).gsub('http://','https://')
             user.password = SecureRandom.hex
-            binding.pry
+        end
+    end
+
+    def avatar?(options_array)
+        self.avatar.present? ? ("#{self.avatar}" + "." + options_array.join(".")) : self.remote_image_url
+    end
+
+    def username?
+        if self.username.blank?
+            ("User" + self.id.to_s)
+        else
+            self.username
         end
     end
 end

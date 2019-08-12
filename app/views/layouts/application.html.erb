@@ -38,7 +38,7 @@ body {
 
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: #333;
+  background-color: #606363;
   overflow: hidden;
 }
 
@@ -68,6 +68,7 @@ body {
 </head>
 <body>
 <div class="header">
+  <img src="https://i.ibb.co/vwJm0zD/419px-Paw-print.png" alt="419px-Paw-print" border="0">
   <h1>Pat My Dog</h1>
   <p>Pat some dogs, let your dog get pats!</p>
 </div>
@@ -75,7 +76,6 @@ body {
 <div class="topnav">
   <%= link_to "Account", user_path(current_user), class: "active"%>
   <%= link_to "Profile", profile_path(current_user.profile) %>
-  <%= link_to "Your Photos", profile_photos_path(current_user.profile) %>
   <%= link_to "Logout", logout_path %>
 </div>
 
@@ -84,14 +84,16 @@ body {
     <div class="col-sm-2">
 <br>
 <div class="card">
-  <%= link_to (image_tag current_user.avatar.thumbnail), user_path(current_user)%>
-  <h1><%=link_to current_user.username, user_path(current_user)%></h1>
+  <%= link_to (image_tag current_user.avatar?(["thumbnail"])), user_path(current_user)%>
+  <h1><%=link_to current_user.username?, user_path(current_user)%></h1>
   <p><%=current_user.pats.count%> <%= (current_user.pats.count) == 1 ? 'Pat' : 'Pats'%> Given</p>
 </div>
       <h3 style="text-align:center">Menu</h3>
       <p style="text-align:center"><%= link_to "Pat Some Dogs!", photos_path %></p>
       <p style="text-align:center"><%= link_to "Add Photos of Your Dog!", new_profile_photo_path(current_user.profile)%></p>
-      <p style="text-align:center">link</p>
+      <p style="text-align:center"><%= link_to "Create A New Album", new_profile_album_path(current_user.profile) %></p>
+      <p style="text-align:center"><%= link_to "Your Photos", profile_photos_path(current_user.profile) %></p>
+      <p style="text-align:center"><%= link_to "Your Albums", profile_albums_path(current_user.profile) %></p>
     </div>
   <div class="col-sm-10">
 

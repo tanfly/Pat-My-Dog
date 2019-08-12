@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_185255) do
+ActiveRecord::Schema.define(version: 2019_08_11_210549) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_185255) do
     t.string "location"
     t.string "email"
     t.string "avatar"
+    t.string "remote_image_url"
   end
 
 end

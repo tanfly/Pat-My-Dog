@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
 
     def create
         if auth
-            binding.pry
             user = User.find_or_create_by_omniauth(auth)
             session[:user_id] = user.id
             redirect_to user_path(user)

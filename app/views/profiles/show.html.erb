@@ -1,11 +1,11 @@
 <div class="photo">
-<h1><%= image_tag(@user.avatar.thumbnail.url, :class => "thumbnail inline") %><%= @user.username %>'s Profile </h1>
+<h1><%= image_tag(@user.avatar?(["thumbnail", "url"]), :class => "thumbnail inline") %><%= @user.username? %>'s Profile </h1>
 </div>
 
 
 
 <br>
-<%=link_to "#{@user.username}'s Albums", profile_albums_path(@profile)%> |
-<%=link_to "All #{@user.username}'s Photos", profile_photos_path(@profile) %>
+<%=link_to "#{@user.username?}'s Albums", profile_albums_path(@profile)%> |
+<%=link_to "All #{@user.username?}'s Photos", profile_photos_path(@profile) %>
 
-<h2><%= @user.username %> has given <%= @user.pats.count %> <%= (@user.pats.count) == 1 ? 'pat' : 'pats'%> to good doggos! </h2>
+<h2><%= @user.username? %> has given <%= @user.pats.count %> <%= (@user.pats.count) == 1 ? 'pat' : 'pats'%> to good doggos! </h2>

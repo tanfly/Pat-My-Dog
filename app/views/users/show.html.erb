@@ -2,10 +2,10 @@
 
 <p>
   <strong>Avatar:</strong>
-  <% if @user.avatar.blank? %>
+  <% if @user.avatar.blank? && @user.remote_image_url.blank? %>
   <%= link_to "Add Avatar", edit_user_path(@user) %>
   <%else%>
-  <%= image_tag "#{@user.avatar}", size: "500" %> </p>
+  <%= image_tag "#{@user.avatar?(["thumbnail"])}" %> </p>
   <%end%>
 </p>
 

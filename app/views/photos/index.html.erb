@@ -1,6 +1,11 @@
-<% @photos.each do |photo| %>
-<div class="image">
-  <%= link_to (image_tag "#{photo.image}", size: "200"), profile_photo_path(photo.profile_id, photo)%><br>
-<% end %>
-</div>
-<br>
+<%= stylesheet_link_tag "photos" %>
+
+<% @photos.each_slice(4) do |photos| %>
+  <div class="row">
+  <% photos.each do |photo| %>
+  <div class="column"><%= link_to (image_tag "#{photo.image}", size: "200"), profile_photo_path(photo.profile_id, photo)%></div>
+  <% end %>
+  </div>
+  <%end%>
+
+
