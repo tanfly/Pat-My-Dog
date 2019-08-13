@@ -8,16 +8,17 @@ class SessionsController < ApplicationController
         if auth
             user = User.find_or_create_by_omniauth(auth)
             session[:user_id] = user.id
+            user.update_attribute(:last_login, Time.now)
             redirect_to user_path(user)
         else
-        user = User.find_by(username: params[:username])
-            if user && user.authenticate(params[:password])
-                session[:user_id] = user.id 
-                user.update_attribute(:last_login, Time.now)
-                redirect_to user_path(user)
+        @user = User.find_by(username: params[:username])
+            if @user && @user.authenticate(params[:password])
+                session[:user_id] = @user.id 
+                @user.update_attribute(:last_login, Time.now)
+                redirect_to user_path(@user)
             else
-                @errors = user.error.full_messages
-                redirect_to login_path
+                flash[:error] = "Please ensure all form areas are filled out correctly."
+                render :new, :layout => 'login'
             end
         end
     end
