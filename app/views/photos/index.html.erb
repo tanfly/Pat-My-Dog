@@ -1,5 +1,14 @@
 <%= stylesheet_link_tag "photos" %>
 
+<div class="dropdown">
+  <button class="dropbtn">Sort By</button>
+  <div class="dropdown-content">
+  <%= link_to "User", photos_path(sort_order: "user_sort") %> 
+  <%= link_to "Pats High to Low", photos_path(sort_order: "high_to_low") %> 
+  <%= link_to "Pats Low to High", photos_path(sort_order: "low_to_high")%> 
+  </div>
+</div>
+
 <% @photos.each_slice(4) do |photos| %>
   <div class="row">
   <% photos.each do |photo| %>

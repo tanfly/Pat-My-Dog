@@ -8,4 +8,5 @@ class Photo < ApplicationRecord
     accepts_nested_attributes_for :categories
     validates_presence_of :image
     mount_uploader :image, PhotoUploader
+
 end

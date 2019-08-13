@@ -7,7 +7,16 @@ class PhotosController < ApplicationController
             profile = Profile.find(params[:profile_id])
             @photos = profile.photos
         else
-        @photos = Photo.all
+            @photos = Photo.all
+            if params[:sort_order] = "user_sort"
+                @photos.order(:user_id)
+            elsif params[:sort_order] = "high_to_low"
+                @photos.order(:pats.count)
+            elsif params[:sort_order] = "low_to_high"
+                @photos.order(:pats.count :desc)
+            else
+            @photos = Photo.all
+            end
         end
     end
     
@@ -21,10 +30,10 @@ class PhotosController < ApplicationController
     end
     
     def new
-            @profile = current_user.profile
-            @photo = Photo.new
-            @categories = Category.where("name is not null and name != ''")
-            @photo.categories.build
+        @profile = current_user.profile
+        @photo = Photo.new
+        @categories = Category.where("name is not null and name != ''")
+        @photo.categories.build
     end
     
     def create
@@ -58,7 +67,7 @@ class PhotosController < ApplicationController
     end
     
     def photo_params
-        params.require(:photo).permit(:image, :description, :profile_id, :album_id, category_ids:[], categories_attributes: [:name])
+        params.require(:photo).permit(:image, :description, :profile_id, :album_id, :sort_order, category_ids:[], categories_attributes: [:name])
     end
 
     def require_login
