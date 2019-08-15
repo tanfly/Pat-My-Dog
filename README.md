@@ -1,24 +1,15 @@
-# README
+Description
+Pat My Dog is an app where users can upload photos of their dog, view other's photos, and give and receive pats on dog photos. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Install Instructions
+Clone this repo via git clone
+Run bundle install
+Run rails s to run the app on the rails server
+Copy and paste the server address into a web browser to view and interact with the app
+To stop running the app on your server, enter CTRL-C in your terminal
 
-Things you may want to cover:
+Contributors Guide
+Please fork this repo to add your own features, styling, etc. to the app.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+License
+MIT License for this project
