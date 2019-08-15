@@ -13,7 +13,7 @@
 <% @photos.each_slice(4) do |photos| %>
   <div class="row">
   <% photos.each do |photo| %>
-  <div class="column"><%= link_to (image_tag "#{photo.image}", size: "200"), profile_photo_path(photo.profile_id, photo)%></div>
+  <div class="column"><%= link_to (image_tag "#{photo.image}", size: "200"), profile_photo_path(photo.profile_id, photo)%><p><%=photo.pats.count%> <%= (photo.pats.count) == 1 ? 'Pat' : 'Pats'%></p></div>
   <% end %>
   </div>
   <%end%>
