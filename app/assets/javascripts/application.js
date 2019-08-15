@@ -16,3 +16,4 @@
 //= require_tree .
 // require cloudinary/processing // Optional - client side processing (resizing and validation)
 //= require cloudinary
+

@@ -7,15 +7,38 @@ class PhotosController < ApplicationController
             profile = Profile.find(params[:profile_id])
             @photos = profile.photos
         else
-            @photos = Photo.all
-            if params[:sort_order] = "user_sort"
-                @photos.order(:user_id)
-            elsif params[:sort_order] = "high_to_low"
-                @photos.order(:pats.count)
-            elsif params[:sort_order] = "low_to_high"
-                @photos.order(:pats.count :desc)
-            else
-            @photos = Photo.all
+            if params[:sort_order] == "user_sort"
+                @photos = Photo.order(:profile_id)
+            elsif params[:sort_order] == "high_to_low"
+                photos = Photo.all
+                p = Pat.group(:photo_id).count
+                sorted_photo_pats = p.sort_by{|k, v| v}.reverse
+                photo_ids_pats = sorted_photo_pats.collect do |photo_id, pat_count|
+                    photo_id
+                end
+                photos_w_zero = photos.reject{|photo| photo_ids_pats.include?(photo.id)}
+                photo_ids_zero = photos_w_zero.collect do |photo|
+                    photo.id 
+                end
+                all_photo_ids = photo_ids_pats + photo_ids_zero
+                @photos = all_photo_ids.collect do |id|
+                    Photo.find(id)
+                end
+            elsif params[:sort_order] == "low_to_high"
+                photos = Photo.all
+                p = Pat.group(:photo_id).count
+                sorted_photo_pats = p.sort_by{|k, v| v}
+                photo_ids_pats = sorted_photo_pats.collect do |photo_id, pat_count|
+                    photo_id
+                end
+                photos_w_zero = photos.reject{|photo| photo_ids_pats.include?(photo.id)}
+                photo_ids_zero = photos_w_zero.collect do |photo|
+                    photo.id 
+                end
+                all_photo_ids = photo_ids_zero + photo_ids_pats
+                @photos = all_photo_ids.collect do |id|
+                    Photo.find(id)
+                end
             end
         end
     end
