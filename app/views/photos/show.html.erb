@@ -1,5 +1,16 @@
 <%= stylesheet_link_tag "photos" %>
 
+<div class="user-info">
+<h3> <%= link_to @photo.profile.user.username?, profile_path(@photo.profile) %>'s Photo </h3>
+<% if @photo.album %>
+<h4>from album <%= link_to @photo.album.name, profile_album_path(@profile, @photo.album) %></h4>
+<%end%>
+</div>
+<br>
+<br>
+
+
+
 <div class="user-info-container">
 <div class="pats">
 <h1><strong>Pats: <p><%= @photo.pats.count %> <%= (@photo.pats.count) == 1 ? 'Pat' : 'Pats'%></p></strong></h1>
@@ -9,6 +20,13 @@
 <%= link_to (cl_image_tag "#{@photo.image}"), photo_pats_path(@photo), :method => :post %>
 <br>
 <br>
+<h4>"<%= @photo.description %>"</h4>
+<br>
+<h5> Categories: </h5>
+<% @categories.each do |category| %>
+    <h6><%= link_to category.name, category_path(category)%></h6>
+    <%end%>
+    <br>
 <% if @photo.profile_id == @user.profile.id %>
 <%= form_tag profile_photo_path(@profile, @photo), method: "delete" do %>
   Psst, <%=@photo.profile.user.username?%>, click this button to <%= submit_tag "Delete This Photo" %>
@@ -17,25 +35,11 @@
 </div>
 
 
-<h3> <%= link_to @photo.profile.user.username?, profile_path(@photo.profile) %>'s Photo </h3>
-<% if @photo.album %>
-<h4>from album <%= link_to @photo.album.name, profile_album_path(@profile, @photo.album) %></h4>
-<%end%>
-
-<h2>Description:</h2> <h4><%= @photo.description %></h4>
 <br>
-<br>
-
-<h5> Categories: </h5>
-<% @categories.each do |category| %>
-    <h6><%= link_to category.name, category_path(category)%></h6>
-    <%end%>
-<br>
-<br>
-
+<div class="comments">
 <h4> Comments:</h4>
 <% @comments.each do |comment| %>
-    <p><%= link_to comment.user.username?, profile_path(comment.user.profile) %> says: <%= comment.content %></p>
+    - <%= link_to comment.user.username?, profile_path(comment.user.profile) %> says: <%= comment.content %>
 <%end%>
 <h5><%= photo_comments?(@photo) %></h5>
 <br>
@@ -47,6 +51,7 @@
 <br>
 <%= f.submit %>
 <% end %>
+</div>
 
 
 
