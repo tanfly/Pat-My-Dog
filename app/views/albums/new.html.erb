@@ -28,7 +28,7 @@
         <%= f.label :add_existing_photos, "Add Existing Photos:" %><br>
                 <%= f.collection_check_boxes(:photo_ids, @profile.photos.where("album_id is null"), :id, :image) do |b| %>
                 <p>
-                <%= b.check_box + cl_image_tag(b.object.image.model.image)%>
+                <%= b.check_box + cl_image_tag(b.object.image.model.image.thumbnail)%>
                 </p>    
             </div>
         <%end%> 

@@ -17,7 +17,9 @@
 <h4><%= photo_pats?(@photo) %></h4>
 <h2> Click my photo to give me a pat! </h2>
 </div>
-<%= link_to (cl_image_tag "#{@photo.image}"), photo_pats_path(@photo), :method => :post %>
+<br>
+<br>
+<%= link_to (cl_image_tag "#{@photo.image.profile_size}"), photo_pats_path(@photo), :method => :post %>
 <br>
 <br>
 <h4>"<%= @photo.description %>"</h4>

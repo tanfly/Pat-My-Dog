@@ -24,6 +24,9 @@
     <%= f.file_field :image %>
         <br>
     <%= hidden_field_tag "photo[profile_id]", @profile.id %><br>
+    <% if @album %>
+    <%= hidden_field_tag "photo[album_id]", @album.id %>
+    <%end%>
    
     <h4><%= f.label "Description:" %><br></h4>
     <%= f.text_area :description, :class => 'description' %><br>

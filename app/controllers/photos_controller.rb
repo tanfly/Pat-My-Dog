@@ -55,6 +55,9 @@ class PhotosController < ApplicationController
     end
     
     def new
+        if params[:album_id]
+            @album = Album.find(params[:album_id])
+        end
         @profile = current_user.profile
         @photo = Photo.new
         @categories = Category.where("name is not null and name != ''")
