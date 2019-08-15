@@ -1,10 +1,10 @@
 <h1>Your Albums:</h1>
 
-<div class="actions">
-  <%= link_to "Add Album", new_profile_album_path(@profile) %>
-</div>
 
-<div class="albums">
+  <%= link_to "Add Album", new_profile_album_path(@profile) %>
+
+
+  
   <% if @albums.empty? %>
     <p>No albums were added yet.</p>
   <% end %>
