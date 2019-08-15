@@ -13,22 +13,63 @@ body {
   margin: 0;
 }
 
+.col-sm-2 {
+  text-align: center;
+}
+
 .header {
+  background-image: url("https://i.ibb.co/NZ18JN3/paw-print-220229.jpg");
   padding: 60px;
   text-align: center;
-  background: #f54263;
-  color: white;
   font-size: 30px;
+}
+
+.centered {
+  top: 5%;
+  left: 10%;
+  background-color: #6032a8;
+  color: white;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 30px;
+  width: 600px;
+  margin: auto;
 }
 
 
 .content {padding:20px;}
 .card {
+  display: inline-block
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
   max-width: 300px;
-  margin: auto;
   text-align: center;
   font-family: arial;
+  padding-top: 6px;
+  border: 4px solid;
+  border-color: #35b4db;
+
+}
+
+.menu_container {
+  width: 100%;
+  height: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  max-width: 300px;
+  display: inline-block
+  margin: 60px;
+  text-align: center;
+  max-width: 300px;
+  background-color: white;
+  border: 4px solid;
+  border-color: #f0a1b6;
 }
 
 .title {
@@ -36,36 +77,13 @@ body {
   font-size: 18px;
 }
 
-.error_explanation {
-  position: relative;
-  padding: 10px;
-  background-color: white;
-  border-radius:.7em;
-  border: 2px solid;
-  border-color: red;
-  color: red;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  width: auto;
-  height: auto;
-}
 
-.closebtn {
-  position: absolute;
-  right: 100px;
-  top: 100px;
-  color: red;
-  font-weight: bold;
-}
-
-/* Add a black background color to the top navigation */
 .topnav {
-  background-color: #606363;
+  background-color: #a8d408;
   overflow: hidden;
 }
 
-/* Style the links inside the navigation bar */
+
 .topnav a {
   float: left;
   color: #f2f2f2;
@@ -75,9 +93,9 @@ body {
   font-size: 17px;
 }
 
-/* Change the color of links on hover */
+
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #e80768;
   color: black;
 }
 
@@ -94,9 +112,11 @@ body {
 
 
 <div class="header">
+<div class="centered">
   <img src="https://i.ibb.co/vwJm0zD/419px-Paw-print.png" alt="419px-Paw-print" border="0">
   <h1>Pat My Dog</h1>
   <p>Pat some dogs, let your dog get pats!</p>
+  </div>
 </div>
 
 <div class="topnav">
@@ -108,7 +128,7 @@ body {
 <div class="container">
   <div class="row">
     <div class="col-sm-2">
-<br>
+    <br>
 <div class="card">
   <% if current_user.avatar.present? %>
   <%= link_to (cl_image_tag current_user.avatar.thumbnail), user_path(current_user)%><br>
@@ -118,12 +138,16 @@ body {
   <%=link_to current_user.username?, user_path(current_user)%><br>
   <p><%=current_user.pats.count%> <%= (current_user.pats.count) == 1 ? 'Pat' : 'Pats'%> Given</p>
 </div>
+<br>
+<br>
+  <div class = "menu_container">
       <h3 style="text-align:center">Menu</h3>
       <p style="text-align:center"><%= link_to "Pat Some Dogs!", photos_path %></p>
       <p style="text-align:center"><%= link_to "Add Photos of Your Dog!", new_profile_photo_path(current_user.profile)%></p>
       <p style="text-align:center"><%= link_to "Create A New Album", new_profile_album_path(current_user.profile) %></p>
       <p style="text-align:center"><%= link_to "Your Photos", profile_photos_path(current_user.profile) %></p>
       <p style="text-align:center"><%= link_to "Your Albums", profile_albums_path(current_user.profile) %></p>
+    </div>
     </div>
   <div class="col-sm-10">
 

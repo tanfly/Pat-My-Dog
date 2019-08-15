@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
         if params[:profile_id]
             profile = Profile.find(params[:profile_id])
             @photos = profile.photos
-        else
+        elsif
             if params[:sort_order] == "user_sort"
                 @photos = Photo.order(:profile_id)
             elsif params[:sort_order] == "high_to_low"
@@ -40,6 +40,8 @@ class PhotosController < ApplicationController
                     Photo.find(id)
                 end
             end
+        else
+            @photos = Photo.all
         end
     end
     

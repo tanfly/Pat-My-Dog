@@ -77,3 +77,28 @@
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.user-info-container {
+  width: 70%;
+  height: 70%;
+  padding: 10px;
+  border-width:5px;  
+  border-style: dotted;
+  border-color: #b80404;
+  text-align: center;
+}
+
+.pats {
+  width: 70%;
+  height: 70%;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+  background-image: url("https://i.ibb.co/wKSvwRL/419px-Paw-print-1.png");
+  background-position: top 25px right 115px;
+  background-repeat: no-repeat;
+  background-size: 200px 150px;
+  border-width:5px;  
+  border-style: dashed;
+  border-color: #fc9e2b;
+}

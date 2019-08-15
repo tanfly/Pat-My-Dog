@@ -1,7 +1,15 @@
+<%= stylesheet_link_tag "users" %>
+
+<div class="hi-container">
 <h1> Hi there, <%= @user.name%>!</h1>
 <h2> You have given out a total of <%= @user.pats.count %> <%= (@user.pats.count) == 1 ? 'Pat' : 'Pats'%></h2>
 <h3><%= link_to "Pat Some Dogs!", photos_path %></h3>
+</div>
+
+<div class="info-container">
+<h4>Your Info:</h4>
 <p>
+<br>
   <strong>Avatar:</strong><br>
   <% if @user.avatar.blank? && @user.remote_image_url.blank? %>
   <%= link_to "Add Avatar", edit_user_path(@user) %>
@@ -21,11 +29,13 @@
 <br>
 <p>
   <strong>Username:</strong><br>
-  <%= @user.username %>
+  <%= @user.username? %>
 </p>
 <br>
-
-
-
-
 <%= link_to 'Edit Your Info', edit_user_path(@user) %> 
+<br>
+<br>
+</div>
+
+
+

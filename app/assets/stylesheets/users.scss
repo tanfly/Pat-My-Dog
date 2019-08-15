@@ -21,3 +21,26 @@
   color: red;
   font-weight: bold;
 }
+
+.hi-container {
+  width: 70%;
+  height: 70%;
+  padding: 10px;
+  border-width:5px;  
+  border-style:dotted;
+  border-color: #b80404;
+  text-align: center;
+
+}
+
+.info-container {
+  width: 70%;
+  height: 70%;
+  padding: 10px;
+  display: inline-block;
+  margin: 60px;
+  text-align: left;
+  max-width: 300px;
+  border: 4px solid;
+  border-color: #fc9e2b;
+}
