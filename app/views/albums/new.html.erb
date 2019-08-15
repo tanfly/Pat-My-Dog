@@ -15,13 +15,15 @@
    </div>
  <% end %>  
 
-
+<div class="form-heading">
 <h1> Create a New Album </h1>
+</div>
+<br>
 <%= form_for [@profile, @album], url: profile_albums_path(@profile) do |f| %>
         <%= f.label :name, "Album Name:" %><br>
                 <%= f.text_field :name %><br>
         <%= f.label :description, "Description:" %><br>
-                <%= f.text_area :description %><br>
+                <%= f.text_area :description, :class => 'description' %><br>
             <%= hidden_field_tag "album[profile_id]", @profile.id %><br>
         <%= f.label :add_existing_photos, "Add Existing Photos:" %><br>
                 <%= f.collection_check_boxes(:photo_ids, @profile.photos.where("album_id is null"), :id, :image) do |b| %>

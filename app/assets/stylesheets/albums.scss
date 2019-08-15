@@ -34,3 +34,68 @@
     color: red;
     font-weight: bold;
   }
+
+
+  /* Album New Form */
+
+  .form-heading {
+    width: 70%;
+    height: 70%;
+    padding: 10px;
+    border-width:5px;  
+    border-style: solid;
+    border-color: #2196F3;
+    text-align: center;
+    color: #e80768;
+  }
+
+
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Style the submit button */
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Add a background color to the submit button on mouse-over */
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+  .description {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+
+  /* Album Index */
+  .albums-heading {
+    width: 70%;
+    height: 70%;
+    padding: 10px;
+    border-width:5px;  
+    border-style: solid;
+    border-color: #45a049;
+    text-align: center;
+    color: #f0a1b6;
+  }

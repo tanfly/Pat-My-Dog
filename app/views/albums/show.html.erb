@@ -1,15 +1,16 @@
 <%= stylesheet_link_tag "albums" %>
-
+<div class="albums-heading">
 <h1><%=link_to @profile.user.username?, profile_path(@profile)%>'s Album: <%= @album.name %></h1>
+</div>
 <br>
 <% if @album.profile_id == @profile.id %>
 <%= form_tag profile_album_path(@profile, @album), method: "delete" do %>
-  <%= submit_tag "Delete This Album?" %>
+  <%= submit_tag "Click here to delete this album" %>
 <% end %>
 <% end %>
-<br>
- <%= link_to "Add a Photo", new_album_photo_path(@album, profile_id: @profile) %>
 
+ <h3><%= link_to "Add a Photo", new_album_photo_path(@album, profile_id: @profile) %></h3>
+<br>
 
 <% if @album.photos.empty? %>
   <p>No photos were added to the album yet.</p>
@@ -19,9 +20,8 @@
     <div class="row">
     <% photos.each do |photo| %>
       <div class="column"><%= link_to (cl_image_tag photo.image.thumbnail.url, :class => "thumbnail inline"), photo_path(photo)%>
-       <h2><%= photo.description %></h2></div>
+       <h4>"<%= photo.description %>"</h4>
+       <h5><%= photo.pats.count %> <%= (photo.pats.count) == 1 ? 'Pat' : 'Pats'%></h5></div>
   <% end %>
 </div>
 <%end%>
-
-<%=link_to "All Albums", profile_albums_path(@profile) %>

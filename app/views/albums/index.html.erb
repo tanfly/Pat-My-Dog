@@ -1,7 +1,10 @@
+<%= stylesheet_link_tag "albums" %>
+
+<div class="albums-heading">
 <h1>Your Albums:</h1>
+</div>
 
-
-  <%= link_to "Add Album", new_profile_album_path(@profile) %>
+  <h4><%= link_to "Add Album", new_profile_album_path(@profile) %></h4>
 
 
   
@@ -9,13 +12,13 @@
     <p>No albums were added yet.</p>
   <% end %>
 
-  <% @albums.each do |album| %>
-    <div class="album">
-      <h2>
-        <%= link_to album.name, profile_album_path(@profile, album) %>
-          <%= link_to image_tag(album.cover.image.thumbnail.url), profile_album_path(@profile, album), {:class => "thumbnail inline"} %>
-        <% end %>
-      </h2>
+  <% @albums.each_slice(4) do |albums| %>
+    <div class="row">
+    <% albums.each do |album| %>
+    <div class="column"><h3><%= link_to album.name, profile_album_path(@profile, album) %></h3>
+    <p><%= link_to image_tag(album.cover.image.thumbnail.url), profile_album_path(@profile, album), {:class => "thumbnail inline"} %></p></div>
+    <% end %>
     </div>
-</div>
+    <%end%>
+
 
