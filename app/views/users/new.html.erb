@@ -1,24 +1,7 @@
-<%= stylesheet_link_tag "users" %>
-<% if @user.errors.any? %>
-   <div class="error_explanation">
-   <div class="closebtn" onclick="this.parentElement.style.display='none';">&times;</div>
-     <h2>
-       <%= pluralize(@user.errors.count, "error") %>
-       prohibited this post from being saved:
-     </h2>
-  
-     <ul>
-     <% @user.errors.full_messages.each do |msg| %>
-       <li><%= msg %></li>
-     <% end %>
-     </ul>
-   </div>
- <% end %>
-
 <div class="bg-img">
 <div class="centered">Welcome to Pat My Dog!</div>
 <div class = "container">
 <h1> Signup: </h1>
-<%= render partial: 'user', locals: {user: @user} %>
+<%= render partial: 'user_form' %>
 </div>
 </div>

@@ -28,11 +28,12 @@ class AlbumsController < ApplicationController
     end
     
     def edit
+        @profile = current_profile
     end
     
     def update
         @album.update(album_params)
-        redirect_to album_path(album)
+        redirect_to album_path(@album)
     end
     
     def destroy

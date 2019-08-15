@@ -4,8 +4,8 @@
 </div>
 <br>
 <% if @album.profile_id == @profile.id %>
-<%= form_tag profile_album_path(@profile, @album), method: "delete" do %>
-  <%= submit_tag "Click here to delete this album" %>
+  <%= form_tag edit_profile_album_path(@profile, @album), method: "get" do %>
+    <%= submit_tag "Edit this album" %>
 <% end %>
 <% end %>
 
@@ -25,3 +25,12 @@
   <% end %>
 </div>
 <%end%>
+
+<br>
+<br>
+
+<% if @album.profile_id == @profile.id %>
+<%= form_tag profile_album_path(@profile, @album), method: "delete" do %>
+  <%= submit_tag "Delete this album" %>
+  <%end%>
+  <% end %>
