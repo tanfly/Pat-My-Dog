@@ -33,6 +33,9 @@
 <%= form_tag profile_photo_path(@profile, @photo), method: "delete" do %>
   Psst, <%=@photo.profile.user.username?%>, click this button to <%= submit_tag "Delete This Photo" %>
 <% end %>
+<%= form_tag edit_profile_photo_path(@profile, @photo), method: "get" do %>
+  or <%= submit_tag "Edit This Photo" %>
+<% end %>
 <% end %>
 </div>
 
@@ -49,7 +52,7 @@
 <%= form_for @comment do |f| %>
 <%= hidden_field_tag "comment[photo_id]", @photo.id %>
 <%= hidden_field_tag "comment[user_id]", @user.id%>
-<%= f.text_area :content %>
+<%= f.text_area :content, :class => "description" %>
 <br>
 <%= f.submit %>
 <% end %>

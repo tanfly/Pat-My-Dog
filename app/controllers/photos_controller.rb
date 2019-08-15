@@ -60,7 +60,6 @@ class PhotosController < ApplicationController
         end
         @profile = current_user.profile
         @photo = Photo.new
-        @categories = Category.where("name is not null and name != ''")
         @photo.categories.build
     end
     
@@ -76,6 +75,7 @@ class PhotosController < ApplicationController
     end
     
     def edit
+        @profile = @photo.profile
     end
     
     def update
