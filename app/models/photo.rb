@@ -4,7 +4,7 @@ class Photo < ApplicationRecord
     has_many :pats, dependent: :destroy
     has_many :comments, dependent: :destroy
     belongs_to :profile
-    belongs_to :album, optional: true
+    belongs_to :album, optional: true, dependent: :destroy
     accepts_nested_attributes_for :categories
     validates_presence_of :image
     mount_uploader :image, PhotoUploader

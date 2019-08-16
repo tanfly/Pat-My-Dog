@@ -14,11 +14,10 @@ class AlbumsController < ApplicationController
     def new
         @album = Album.new
         @profile = current_profile
-        @photos = current_profile.photos.where("album_id is null")
     end
     
     def create
-        @profile = current_user.profile
+        @profile = current_profile
         @album = Album.new(album_params)
         if @album.save
             redirect_to profile_album_path(@profile, @album)
