@@ -43,9 +43,11 @@
 <br>
 <div class="comments">
 <h4> Comments:</h4>
+<ul>
 <% @comments.each do |comment| %>
-    - <%= link_to comment.user.username?, profile_path(comment.user.profile) %> says: <%= comment.content %>
+    <li><%= link_to comment.user.username?, profile_path(comment.user.profile) %> says: <%= comment.content %></li>
 <%end%>
+</ul>
 <h5><%= photo_comments?(@photo) %></h5>
 <br>
 <h4>Add a Comment</h4>

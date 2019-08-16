@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
     before_action :set_profile, only: [:show, :destroy]
 
     def show
-        @user = @profile.user
+        @user = User.find(@profile.user_id)
     end
 
 

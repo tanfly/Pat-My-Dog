@@ -1,15 +1,20 @@
 <%= stylesheet_link_tag "albums" %>
 
 <div class="albums-heading">
+<% if current_profile == @profile %>
 <h1>Your Albums:</h1>
+<h4><%= link_to "Add Album", new_profile_album_path(@profile) %></h4>
+<% else %>
+<% user = User.find(@profile.user_id) %>
+<h1><%= link_to "#{user.username?}'s", profile_path(@profile)%> Albums</h1>
+<% end %>
 </div>
-
-  <h4><%= link_to "Add Album", new_profile_album_path(@profile) %></h4>
+<br>
 
 
   
   <% if @albums.empty? %>
-    <p>No albums were added yet.</p>
+    <h2>No albums were added yet.</h2>
   <% end %>
 
   <% @albums.each_slice(4) do |albums| %>

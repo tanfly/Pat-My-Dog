@@ -1,15 +1,28 @@
+<%= stylesheet_link_tag "profiles" %>
 
-<h1>  <% if current_user.avatar.present? %>
-<%= link_to (cl_image_tag current_user.avatar.thumbnail), user_path(current_user)%><br>
+<div class="user-head">
+<h1><%= @user.username? %>'s Profile </h1>
+</div>
+<br>
+
+<% if @user.avatar.present? %>
+<%= cl_image_tag (@user.avatar.thumbnail), :class => "center"%><br>
 <% else %>
-<%= link_to (image_tag current_user.remote_image_url), user_path(current_user) %><br>
-<% end %><%= @user.username? %>'s Profile </h1>
+<%= image_tag (@user.remote_image_url), :class => "center" %><br>
+<% end %> 
+
+<div class="pats-count">
+<h2><%= @user.username? %> has given <%= @user.pats.count %> <%= (@user.pats.count) == 1 ? 'pat' : 'pats'%> to good doggos! </h2>
+</div>
+
 
 
 
 
 <br>
+<div class="profile-links">
+<h3>
 <%=link_to "#{@user.username?}'s Albums", profile_albums_path(@profile)%> |
 <%=link_to "All #{@user.username?}'s Photos", profile_photos_path(@profile) %>
-
-<h2><%= @user.username? %> has given <%= @user.pats.count %> <%= (@user.pats.count) == 1 ? 'pat' : 'pats'%> to good doggos! </h2>
+</h3>
+</div>
