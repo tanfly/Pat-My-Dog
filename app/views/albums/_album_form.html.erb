@@ -16,7 +16,7 @@
  <% end %>  
 
 
-<%= form_for [@profile, @album], url: profile_albums_path(@profile) do |f| %>
+<%= form_for [@profile, @album] do |f| %>
     <%= f.label :name, "Album Name:" %><br>
             <%= f.text_field :name %><br>
     <%= f.label :description, "Description:" %><br>

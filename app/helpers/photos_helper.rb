@@ -1,6 +1,6 @@
 module PhotosHelper
     def photo_pats?(photo)
-        if !photo.pats.count
+        unless photo.pats.count > 0
             "Oh no! No pats for this good doggo yet. You can be the first!"
         end
     end
@@ -10,6 +10,7 @@ module PhotosHelper
             "No comments yet! You can be the first"
         end
     end
+
     
     #has to be done on the upload, this won't work 
     def be_straight(photo)

@@ -3,4 +3,4 @@
 </div>
 <br>
 
-<%= render partial: 'album_form' %>
+<%= render partial: 'album_form', locals: {url: edit_profile_album_path(@profile, @album), method: :patch} %>

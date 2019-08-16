@@ -2,6 +2,6 @@
 <h1> Create a New Album </h1>
 </div>
 <br>
-<%= render partial: 'album_form' %>
+<%= render partial: 'album_form', locals: {url: profile_albums_path(@profile), method: :post} %>
 
 

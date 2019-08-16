@@ -46,6 +46,11 @@
 <ul>
 <% @comments.each do |comment| %>
     <li><%= link_to comment.user.username?, profile_path(comment.user.profile) %> says: <%= comment.content %></li>
+    <% if comment.user == current_user %>
+    <%= form_tag comment_path(comment), method: "delete" do %>
+      <%= submit_tag "Delete Comment" %>
+      <%end%>
+      <%end%>
 <%end%>
 </ul>
 <h5><%= photo_comments?(@photo) %></h5>

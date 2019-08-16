@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment.destroy
-        redirect_to photo_path(params[:photo_id])
+        redirect_to request.referrer
     end
 
     private

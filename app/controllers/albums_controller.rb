@@ -31,8 +31,12 @@ class AlbumsController < ApplicationController
     end
     
     def update
+        binding.pry
         @album.update(album_params)
+        if params[:detele_ids].any?
+            @album
         redirect_to album_path(@album)
+        end
     end
     
     def destroy
@@ -53,6 +57,6 @@ class AlbumsController < ApplicationController
     end
     
     def album_params
-        params.require(:album).permit(:name, :description, :profile_id, photo_ids:[])
+        params.require(:album).permit(:name, :description, :profile_id, photo_ids:[], delete_ids:[])
     end
 end
