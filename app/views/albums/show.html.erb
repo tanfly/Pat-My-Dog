@@ -1,36 +1,40 @@
 <%= stylesheet_link_tag "albums" %>
+
 <div class="albums-heading">
-<h1><%=link_to @profile.user.username?, profile_path(@profile)%>'s Album: <%= @album.name %></h1>
+  <h1><%=link_to @profile.user.username?, profile_path(@profile)%>'s Album: <%= @album.name %></h1>
 </div>
 <br>
+
 <% if @album.profile_id == @profile.id %>
   <%= form_tag edit_profile_album_path(@profile, @album), method: "get" do %>
-    <%= submit_tag "Edit this album" %>
-<% end %>
+  <%= submit_tag "Edit this album" %>
+  <% end %>
 <% end %>
 
- <h3><%= link_to "Add a Photo", new_album_photo_path(@album, profile_id: @profile) %></h3>
+
+<h3><%= link_to "Add a Photo", new_album_photo_path(@album, profile_id: @profile) %></h3>
 <br>
+
 
 <% if @album.photos.empty? %>
   <p>No photos were added to the album yet.</p>
 <% end %>
 
-  <% @album.photos.each_slice(4) do |photos| %>
-    <div class="row">
+<% @album.photos.each_slice(4) do |photos| %>
+  <div class="row">
     <% photos.each do |photo| %>
       <div class="column"><%= link_to (cl_image_tag photo.image.thumbnail.url, :class => "thumbnail inline"), photo_path(photo)%>
-       <h4>"<%= photo.description %>"</h4>
-       <h5><%= photo.pats.count %> <%= (photo.pats.count) == 1 ? 'Pat' : 'Pats'%></h5></div>
-  <% end %>
-</div>
+      <h4>"<%= photo.description %>"</h4>
+      <h5><%= photo.pats.count %> <%= (photo.pats.count) == 1 ? 'Pat' : 'Pats'%></h5></div>
+    <% end %>
+  </div>
 <%end%>
 
 <br>
 <br>
 
 <% if @album.profile_id == @profile.id %>
-<%= form_tag profile_album_path(@profile, @album), method: "delete" do %>
+  <%= form_tag profile_album_path(@profile, @album), method: "delete" do %>
   <%= submit_tag "Delete this album" %>
   <%end%>
-  <% end %>
+<%end%>

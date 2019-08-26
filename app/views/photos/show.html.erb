@@ -1,67 +1,76 @@
 <%= stylesheet_link_tag "photos" %>
 
 <div class="user-info">
-<h3> <%= link_to @photo.profile.user.username?, profile_path(@photo.profile) %>'s Photo </h3>
-<% if @photo.album %>
-<h4>from album <%= link_to @photo.album.name, profile_album_path(@profile, @photo.album) %></h4>
-<%end%>
+  <h3> <%= link_to @photo.profile.user.username?, profile_path(@photo.profile) %>'s Photo </h3>
+    <% if @photo.album %>
+      <h4>from album <%= link_to @photo.album.name, profile_album_path(@profile, @photo.album) %></h4>
+    <%end%>
 </div>
+
 <br>
 <br>
 
 
 
 <div class="user-info-container">
-<div class="pats">
-<h1><strong>Pats: <p><%= @photo.pats.count %> <%= (@photo.pats.count) == 1 ? 'Pat' : 'Pats'%></p></strong></h1>
-<h4><%= photo_pats?(@photo) %></h4>
-<h2> Click my photo to give me a pat! </h2>
-</div>
+  <div class="pats">
+    <h1><strong>Pats: <p><%= @photo.pats.count %> <%= (@photo.pats.count) == 1 ? 'Pat' : 'Pats'%></p></strong></h1>
+    <h4><%= photo_pats?(@photo) %></h4>
+    <h2> Click my photo to give me a pat! </h2>
+  </div>
 <br>
 <br>
+
 <%= link_to (cl_image_tag "#{@photo.image.profile_size}"), photo_pats_path(@photo), :method => :post %>
 <br>
 <br>
+
 <h4>"<%= @photo.description %>"</h4>
 <br>
+
 <h5> Categories: </h5>
-<% @categories.each do |category| %>
+  <% @categories.each do |category| %>
     <h6><%= link_to category.name, category_path(category)%></h6>
-    <%end%>
-    <br>
+  <%end%>
+
+<br>
 <% if @photo.profile_id == @user.profile.id %>
-<%= form_tag profile_photo_path(@profile, @photo), method: "delete" do %>
-  Psst, <%=@photo.profile.user.username?%>, click this button to <%= submit_tag "Delete This Photo" %>
-<% end %>
-<%= form_tag edit_profile_photo_path(@profile, @photo), method: "get" do %>
-  or <%= submit_tag "Edit This Photo" %>
-<% end %>
+  <%= form_tag profile_photo_path(@profile, @photo), method: "delete" do %>
+    Psst, <%=@photo.profile.user.username?%>, click this button to <%= submit_tag "Delete This Photo" %>
+  <% end %>
+
+  <%= form_tag edit_profile_photo_path(@profile, @photo), method: "get" do %>
+    or <%= submit_tag "Edit This Photo" %>
+  <% end %>
 <% end %>
 </div>
 
 
 <br>
+
 <div class="comments">
-<h4> Comments:</h4>
-<ul>
-<% @comments.each do |comment| %>
-    <li><%= link_to comment.user.username?, profile_path(comment.user.profile) %> says: <%= comment.content %></li>
-    <% if comment.user == current_user %>
-    <%= form_tag comment_path(comment), method: "delete" do %>
-      <%= submit_tag "Delete Comment" %>
-      <%end%>
+  <h4> Comments:</h4>
+    <ul>
+      <% @comments.each do |comment| %>
+        <li><%= link_to comment.user.username?, profile_path(comment.user.profile) %> says: <%= comment.content %></li>
+          <% if comment.user == current_user %>
+            <%= form_tag comment_path(comment), method: "delete" do %>
+            <%= submit_tag "Delete Comment" %>
+          <%end%>
       <%end%>
 <%end%>
 </ul>
+
 <h5><%= photo_comments?(@photo) %></h5>
 <br>
+
 <h4>Add a Comment</h4>
-<%= form_for @comment do |f| %>
-<%= hidden_field_tag "comment[photo_id]", @photo.id %>
-<%= hidden_field_tag "comment[user_id]", @user.id%>
-<%= f.text_area :content, :class => "description" %>
-<br>
-<%= f.submit %>
+  <%= form_for @comment do |f| %>
+    <%= f.hidden_field :photo_id, :value => @photo.id %>
+    <%= f.hidden_field :user_id, :value => @user.id%>
+    <%= f.text_area :content, :class => "description" %>
+  <br>
+  <%= f.submit %>
 <% end %>
 </div>
 

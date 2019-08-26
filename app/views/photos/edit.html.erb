@@ -1,41 +1,42 @@
 <%= stylesheet_link_tag "photos" %>
+
 <div class="form-heading">
-<h1>Edit Photo</h1>
+  <h1>Edit Photo</h1>
 </div>
 <br>
 
 <%= cl_image_tag "#{@photo.image.thumbnail}"%>
-<%= form_for [@profile, @photo], url: profile_photo_path(@profile, @photo) do |f| %>
+  <%= form_for [@profile, @photo], url: profile_photo_path(@profile, @photo) do |f| %>
     <%= hidden_field_tag "photo[profile_id]", @profile.id %><br>
-    <% if @album %>
-    <%= hidden_field_tag "photo[album_id]", @album.id %>
-    <%end%>
+      <% if @album %>
+        <%= hidden_field_tag "photo[album_id]", @album.id %>
+      <%end%>
    
     <h4><%= f.label "Description:" %><br></h4>
-    <%= f.text_area :description, :class => 'description' %><br>
+      <%= f.text_area :description, :class => 'description' %><br>
     <br>
     
 
 
   <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Categories (Select as many as you want)</button>
-  <div id="myDropdown" class="dropdown-content">
-    <%= f.collection_check_boxes(:category_ids, Category.where("name is not null and name != ''"), :id, :name) do |b| %>
-      <label class="checkbox-container">
-        <%= b.check_box %>
-        <%= b.label %>
-        <span class="checkmark"></span>
-        </label>
+    <button onclick="myFunction()" class="dropbtn">Categories (Select as many as you want)</button>
+      <div id="myDropdown" class="dropdown-content">
+        <%= f.collection_check_boxes(:category_ids, Category.where("name is not null and name != ''"), :id, :name) do |b| %>
+          <label class="checkbox-container">
+            <%= b.check_box %>
+            <%= b.label %>
+            <span class="checkmark"></span>
+          </label>
         <%end%> 
       </div>
-    </div>
+  </div>
     <br>
     <br>
 
-    <%= f.fields_for :categories do |category_builder| %>
+    <%= f.fields_for :categories, @photo.categories.build do |category_builder| %>
        <h4> <%= category_builder.label "And/or add a new category:" %></h4>
         <%= category_builder.text_field :name %>
         <%end%> 
-            <br>
+        <br>
     <%= f.submit "Edit Image" %>
     <%end%>

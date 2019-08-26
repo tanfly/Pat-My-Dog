@@ -1,13 +1,13 @@
 <%= stylesheet_link_tag "albums" %>
 
 <div class="albums-heading">
-<% if current_profile == @profile %>
-<h1>Your Albums:</h1>
-<h4><%= link_to "Add Album", new_profile_album_path(@profile) %></h4>
-<% else %>
-<% user = User.find(@profile.user_id) %>
-<h1><%= link_to "#{user.username?}'s", profile_path(@profile)%> Albums</h1>
-<% end %>
+  <% if current_profile == @profile %>
+    <h1>Your Albums:</h1>
+    <h4><%= link_to "Add Album", new_profile_album_path(@profile) %></h4>
+  <% else %>
+    <% user = User.find(@profile.user_id) %>
+    <h1><%= link_to "#{user.username?}'s", profile_path(@profile)%> Albums</h1>
+  <% end %>
 </div>
 <br>
 
@@ -19,11 +19,11 @@
 
   <% @albums.each_slice(4) do |albums| %>
     <div class="row">
-    <% albums.each do |album| %>
-    <div class="column"><h3><%= link_to album.name, profile_album_path(@profile, album) %></h3>
-    <p><%= link_to image_tag(album.cover.image.thumbnail.url), profile_album_path(@profile, album), {:class => "thumbnail inline"} %></p></div>
-    <% end %>
+      <% albums.each do |album| %>
+        <div class="column"><h3><%= link_to album.name, profile_album_path(@profile, album) %></h3>
+        <p><%= link_to image_tag(album.cover.image.thumbnail.url), profile_album_path(@profile, album), {:class => "thumbnail inline"} %></p></div>
+      <% end %>
     </div>
-    <%end%>
+  <%end%>
 
 

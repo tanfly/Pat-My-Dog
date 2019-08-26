@@ -31,9 +31,8 @@ class AlbumsController < ApplicationController
     end
     
     def update
-        binding.pry
         @album.update(album_params)
-        if params[:detele_ids].any?
+        if params[:delete_ids].any?
             @album
         redirect_to album_path(@album)
         end

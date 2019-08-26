@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def high_to_low(photos)
-
     ids = photos.collect do |photo|
       photo.id
     end

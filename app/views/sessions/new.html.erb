@@ -1,22 +1,21 @@
 <%= stylesheet_link_tag "sessions" %>
 <% if flash[:error].present? %>
-   <div class="error_explanation">
-   <div class="closebtn" onclick="this.parentElement.style.display='none';">&times;</div>
-       <li><%= flash[:error] %></li>
-     </ul>
-   </div>
+  <div class="error_explanation">
+  <div class="closebtn" onclick="this.parentElement.style.display='none';">&times;</div>
+    <li><%= flash[:error] %></li>
+  </ul>
+  </div>
  <% end %>
 
  
 <div class="bg-img">
-<div class="centered">Welcome to Pat My Dog!</div>
-<div class = "container">
-  <%= form_tag '/login' do %>
-    <h1> Login: </h1>
-    Username: <%= text_field_tag :username %><br>
-    Password: <%= password_field_tag :password %><br>
-    <%= submit_tag "Login", class: "btn" %>
-  
-  <% end %>
+  <div class="centered">Welcome to Pat My Dog!</div>
+    <div class = "container">
+      <%= form_tag '/login' do %>
+        <h1> Login: </h1>
+          Username: <%= text_field_tag :username %><br>
+          Password: <%= password_field_tag :password %><br>
+      <%= submit_tag "Login", class: "btn" %>
+      <% end %>
   </div>
   </div>

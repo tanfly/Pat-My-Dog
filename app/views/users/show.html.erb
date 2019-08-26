@@ -7,31 +7,34 @@
 </div>
 
 <div class="info-container">
-<h4>Your Info:</h4>
-<p>
+  <h4>Your Info:</h4>
+    <p>
 <br>
   <strong>Avatar:</strong><br>
-  <% if @user.avatar.blank? && @user.remote_image_url.blank? %>
-  <%= link_to "Add Avatar", edit_user_path(@user) %>
-  <%else%>
-    <% if current_user.avatar.present? %>
-    <%= cl_image_tag @user.avatar.thumbnail%><br>
-    <% else %>
-    <%= image_tag @user.remote_image_url %><br>
-    <% end %>
-  <%end%>
-</p>
+    <% if @user.avatar.blank? && @user.remote_image_url.blank? %>
+      <%= link_to "Add Avatar", edit_user_path(@user) %>
+    <%else%>
+      <% if current_user.avatar.present? %>
+        <%= cl_image_tag @user.avatar.thumbnail%><br>
+      <% else %>
+        <%= image_tag @user.remote_image_url %><br>
+      <% end %>
+    <%end%>
+    </p>
 <br>
+
 <p>
   <strong>Name:</strong><br>
   <%= @user.name %>
 </p>
 <br>
+
 <p>
   <strong>Username:</strong><br>
   <%= @user.username? %>
 </p>
 <br>
+
 <%= link_to 'Edit Your Info', edit_user_path(@user) %> 
 <br>
 <br>

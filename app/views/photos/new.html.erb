@@ -1,42 +1,45 @@
 <%= stylesheet_link_tag "photos" %>
+
 <div class="form-heading">
-<h1> Add a Photo of Your Pup</h1>
+  <h1> Add a Photo of Your Pup</h1>
 </div>
 <br>
+
 <%= form_for [@profile, @photo], url: profile_photos_path(@profile) do |f| %>
-    <h4><%= f.label :image%></h4>
+  <h4><%= f.label :image%></h4>
     <%= f.file_field :image %>
-        <br>
-    <%= hidden_field_tag "photo[profile_id]", @profile.id %><br>
+    <br>
+  <%= hidden_field_tag "photo[profile_id]", @profile.id %><br>
     <% if @album %>
-    <%= hidden_field_tag "photo[album_id]", @album.id %>
+      <%= hidden_field_tag "photo[album_id]", @album.id %>
     <%end%>
    
-    <h4><%= f.label "Description:" %><br></h4>
+  <h4><%= f.label "Description:" %><br></h4>
     <%= f.text_area :description, :class => 'description' %><br>
-    <br>
+  <br>
     
 
 
   <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Categories (Select as many as you want)</button>
-  <div id="myDropdown" class="dropdown-content">
-    <%= f.collection_check_boxes(:category_ids, Category.where("name is not null and name != ''"), :id, :name) do |b| %>
-      <label class="checkbox-container">
-        <%= b.check_box %>
-        <%= b.label %>
-        <span class="checkmark"></span>
-        </label>
-        <%end%> 
+    <button onclick="myFunction()" class="dropbtn">Categories (Select as many as you want)</button>
+      <div id="myDropdown" class="dropdown-content">
+          <%= f.collection_check_boxes(:category_ids, Category.where("name is not null and name != ''"), :id, :name) do |b| %>
+            <label class="checkbox-container">
+              <%= b.check_box %>
+              <%= b.label %>
+              <span class="checkmark"></span>
+            </label>
+          <%end%> 
       </div>
-    </div>
-    <br>
-    <br>
+  </div>
 
-    <%= f.fields_for :categories do |category_builder| %>
-       <h4> <%= category_builder.label "And/or add a new category:" %></h4>
-        <%= category_builder.text_field :name %>
-        <%end%> 
-            <br>
+  <br>
+  <br>
+
+  <%= f.fields_for :categories do |category_builder| %>
+    <h4> <%= category_builder.label "And/or add a new category:" %></h4>
+      <%= category_builder.text_field :name %>
+    <%end%> 
+  <br>
     <%= f.submit "Upload Image" %>
-    <%end%>
+  <%end%>
