@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-    before_action :require_login, only: [:show, :index, :new, :create, :edit, :destroy]
+    before_action :require_login, only: [:show, :index, :new, :create, :edit]
     before_action :set_photo, only: [:show, :edit, :update, :destroy]
     
     def index

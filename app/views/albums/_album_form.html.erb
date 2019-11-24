@@ -17,16 +17,25 @@
 
 
 <%= form_for [@profile, @album] do |f| %>
+  <% if @album.photos.any? %>
+    <%= f.label :delete_photos, "Check Photos to Delete" %><br> 
+      <%= f.collection_check_boxes(:photo_ids, @album.photos, :id, :image) do |b| %><br>
+      <%= b.check_box + cl_image_tag(b.object.image.model.image.thumbnail)%><br>
+    <%end%>
+  <%end%>
+  <br>
   <%= f.label :name, "Album Name:" %><br>
     <%= f.text_field :name %><br>
   <%= f.label :description, "Description:" %><br>
     <%= f.text_area :description, :class => 'description' %><br>
   <%= hidden_field_tag "album[profile_id]", @profile.id %><br>
-  <%= f.label :add_existing_photos, "Add Existing Photos:" %><br>
-    <%= f.collection_check_boxes(:photo_ids, @profile.photos.where("album_id is null"), :id, :image) do |b| %>
-      <p>
-        <%= b.check_box + cl_image_tag(b.object.image.model.image.thumbnail)%>
-      </p>    
-    <%end%> 
+  <% if @profile.photos.where("album_id is null").any? %>
+    <%= f.label :add_existing_photos, "Add Existing Photos:" %><br>
+      <%= f.collection_check_boxes(:photo_ids, @profile.photos.where("album_id is null"), :id, :image) do |b| %>
+        <p>
+          <%= b.check_box + cl_image_tag(b.object.image.model.image.thumbnail)%>
+        </p>    
+      <%end%> 
+  <%end%>    
   <%= f.submit %>
 <%end%> 
