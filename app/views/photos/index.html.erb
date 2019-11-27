@@ -31,12 +31,17 @@
 <br>
 <br>
 
-<% @photos.each_slice(4) do |photos| %>
-  <div class="row">
-    <% photos.each do |photo| %>
-      <div class="column"><%= link_to (image_tag "#{photo.image}", size: "200"), profile_photo_path(photo.profile_id, photo)%><p><%=photo.pats.count%> <%= (photo.pats.count) == 1 ? 'Pat' : 'Pats'%></p></div>
-    <% end %>
-  </div>
+<% if @photos %>
+  <% @photos.each_slice(4) do |photos| %>
+    <div class="row">
+      <% photos.each do |photo| %>
+        <div class="column"><%= link_to (image_tag "#{photo.image}", size: "200"), profile_photo_path(photo.profile_id, photo)%><p><%=photo.pats.count%> <%= (photo.pats.count) == 1 ? 'Pat' : 'Pats'%></p></div>
+      <% end %>
+    </div>
+  <%end%>
+<% else %>
+      <h3> Oh no! No doggos yet. Click <%= link_to "here", new_profile_photo_path(@profile)%> to get started! </h3>
 <%end%>
+
 
 
